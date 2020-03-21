@@ -50,7 +50,9 @@ class Usuario{
 	}
 
 	public function setNascimento($nascimento){
-		$this->nascimento= $nascimento;
+		$d = explode("/", $nascimento);
+	  $retornodata = "$d[2]-$d[1]-$d[0]";
+		$this->nascimento= $retornodata;
 	}
 
   public function getNascimento(){
@@ -59,6 +61,7 @@ class Usuario{
 
 
 	public function setCpf($cpf){
+		
 		$this->cpf = $cpf;
 	}
 

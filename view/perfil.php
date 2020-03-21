@@ -1,6 +1,7 @@
 <?php
+$id_habilitado = addslashes($_POST['id_h']);
 
-include_once "../model/conexao.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,9 +19,7 @@ include_once "../model/conexao.php";
 </head>
 <body>
 <?php include "menu.php"; ?>
-
-
-
+<?php include "../controller/c_perfil.php"; ?>
 <div  class="container centered row p-3 my-3">
 
     <!--slide de fotos-->
@@ -67,11 +66,11 @@ include_once "../model/conexao.php";
 <div class="card row col-12 col-sm-12 col-md-4" style="width: 18rem;">
 <img src="/media/fotodoperfil.jpeg" class="card-img-top my-3" alt="...">
 <div class="card-body">
-<h5 class="card-title">Modelo Lauanny Moreira</h5>
-<p class="card-text">Modelo comecial, servir como ajuda visual para fotografias de roupas e acessorios</p>
+<h5 class="card-title"><?php echo $buscar["nome_apresentacao"];?></h5>
+<p class="card-text"><?php echo $buscar["apresentacao"];?></p>
 </div>
 <ul class="list-group list-group-flush">
-<li class="list-group-item">Horario de atendimento das 08:00 as 17:00</li>
+<li class="list-group-item">Horario de atendimento das <?php echo $buscar["horario_atendimento"];?></li>
 </ul>
 <div class="card-body">
 <button type="button" class="btn btn-dark">Contratar</button>
@@ -89,9 +88,9 @@ include_once "../model/conexao.php";
     <img class="rounded-circle align-self-start mr-3" src="/media/06.jpeg" alt="Generic placeholder image" style="width: 300px; height: 300px;">
   </div>
   <div class="media-body col-12 col-sm-12 col-md-8">
-    <h5 class="mt-0">Top-aligned media</h5>
-    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+    <h5 class="mt-0"><?php echo $buscar["titulo_descricao"];?></h5>
+    <p><?php echo $buscar["texto_descricao"];?></p>
+    <p></p>
   </div>
 
 
@@ -113,6 +112,7 @@ include_once "../model/conexao.php";
 
 </div>
 <!--fim video-->
+
 
 <?php include "rodape.php"; ?>
 

@@ -68,6 +68,26 @@ function cadastrar($dados_usuario){
 	    }
 	}
 
+	function verificarEmail($dados_usuario){
+		$pdo = conectar();
+
+		// sql fara uma consulta ao banco de dados, para busca o e-mail
+		$sql = "SELECT * FROM usuarios WHERE email = :email";
+		$sql = $pdo->prepare($sql);
+		$sql->bindValue(":email", $dados_usuario->getEmail());
+		$sql->execute();
+
+		// verificar quantos registro tem com essa informação
+		// se tiver um registro retorna true
+		if ($sql->rowCount() > 0) {
+			$dado = $sql->fetch();
+			return true;
+		}else {
+			return false;
+		}
+
+	}
+
 
 
 	function atualizar_usuario($dados_usuario){
@@ -166,4 +186,39 @@ function cadastrar($dados_usuario){
         return $returner;
     }
 
+
+		function cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario){
+
+			$pdo = conectar();
+
+		    try {
+		        $query = $pdo->prepare("INSERT INTO habilitados (nome_apresentacao, apresentacao,  horario_atendimento, titulo_descricao, texto_descricao, id_usuario) VALUES (:nome_apresentacao, :apresentacao, :horario_atendimento, :titulo_descricao, :texto_descricao, :id_usuario)");
+
+			        $query->bindValue(":nome_apresentacao", $nome_apresentacao);
+			        $query->bindValue(":apresentacao", $apresentacao);
+							$query->bindValue(":horario_atendimento",$horario_atendimento);
+					    $query->bindValue(":titulo_descricao", $titulo_descricao);
+							$query->bindValue(":texto_descricao", $texto_descricao);
+							$query->bindValue(":id_usuario", $id_usuario);
+
+			        $query->execute();
+
+	            return true;
+
+		    } catch (PDOException $e) {
+		        echo "Erro ao cadastrar habilitado: ".$e->getMessage();
+	          return false;
+		    }
+		}
+		//fara a busca de todos os habilitado para pagina index
+		function buscar_todos_habilitado(){
+			
+
+
+		}
+		// realizara a busca de apenas um habilitado para mostra da pagina perfil
+		function buscar_um_habilitado(){
+
+
+		}
  ?>

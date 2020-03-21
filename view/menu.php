@@ -59,7 +59,7 @@
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Meu perfil</a>
-                <a class="dropdown-item" href="#">Agenda</a>
+                <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
                 <a class="dropdown-item" href="../controller/logout.php">Sair</a>
               </div>

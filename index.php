@@ -8,6 +8,13 @@ include_once "model/conexao.php";
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--hack para centralizar o container-->
+    <style type="text/css">
+    .centered {
+    margin: 0 auto !important;
+    float: none !important;
+    }
+    </style>
 </head>
 <body>
 <?php include "view/menu.php"; ?>
@@ -23,16 +30,19 @@ include_once "model/conexao.php";
 
       switch ($pg) {
         case '':
-          include_once "view/cads.php";
+          include_once "controller/c_cads.php";
           break;
 
           case 'index':
-            include_once "view/cads.php";
+            include_once "controller/c_cads.php";
             break;
 
         case 'perfil':
           include_once "view/perfil.php";
           break;
+        case 'adastrohabilitado':
+            include_once "view/adastrohabilitado.php";
+        break;
       }
       ?>
 
