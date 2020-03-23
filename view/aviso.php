@@ -1,12 +1,9 @@
-<?php
-include_once "model/conexao.php";
-// include_once "controller/c_verifica.php";
-?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Tela de aviso</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!--hack para centralizar o container-->
     <style type="text/css">
@@ -17,36 +14,23 @@ include_once "model/conexao.php";
     </style>
 </head>
 <body>
-<?php include "view/menu.php"; ?>
-
   <main>
-    <div class="container-fluid">
+    <div class="container-fluid col-md-6 p-3">
 
-      <?php
-      $pg = "";
-       if (isset($_GET['pg']) && !empty($_GET['pg'])){
-        $pg = addslashes($_GET['pg']);
-      }
 
-      switch ($pg) {
-        case '':
-          include_once "controller/c_cads.php";
-          break;
+      <?php if (isset($_GET['aviso']) && !empty($_GET['aviso'])):
+        $aviso = addslashes($_GET['aviso']);?>
+      <?php endif; ?>
 
-          case 'index':
-            include_once "controller/c_cads.php";
-            break;
+    <?php if ($aviso == 1): ?>
+      <div class="jumbotron">
+        <h1 class="display-4">Usuario não é uma habilitado acesso negado!</h1>
+        <p class="lead">Para ter acesso a essa pagina realize o cadastro de habilitado</p>
+        <a class="btn btn-primary btn-lg" href="../index.php" role="button">Volta para home</a>
+      </div>
+    <?php endif; ?>
 
-        case 'perfil':
-          include_once "view/perfil.php";
-          break;
-        case 'adastrohabilitado':
-            include_once "view/adastrohabilitado.php";
-        break;
 
-        
-      }
-      ?>
 
 
     </div>

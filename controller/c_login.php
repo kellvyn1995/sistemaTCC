@@ -16,7 +16,13 @@ if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) 
 
     //
     if (isset($_SESSION['idUser'])) {
-        header("Location: ../index.php?pg=index");
+          // verificar se o usuario e um habilitado se sim sera criado uma sessão habiltado
+          $a = $_SESSION['idUser'];
+          if ($u->buscar_um_habilitado($a)) {
+            header("Location: ../view/meuPerfil.php");
+          }else {
+            header("Location: ../index.php?pg=index");
+          }
     }else {
       header("Location: ../view/login.php");
     }

@@ -16,14 +16,14 @@ class Logar{
 			if ($sql->rowCount() > 0) {
 				$dado = $sql->fetch();
 				$_SESSION['idUser'] = $dado['id'];
-
+				$_SESSION['nome'] = $dado['nome'];
 				return true;
 			}else {
 				echo "nenhum usuario encontrado";
 			}
 
 		}
-		// controle de acesso
+		// controle de acesso busca informações
 		public function logged($id){
 			$pdo = conectar();
 
@@ -41,8 +41,47 @@ class Logar{
 
 			return $array;
 		}
-}
 
+		// realizara a busca de apenas um habilitado
+		public function buscar_um_habilitado($id){
+			$pdo = conectar();
+
+			// sql fara uma consulta ao banco de dados, para busca o habilitado
+			$sql = "SELECT * FROM habilitados WHERE id_usuario = :id_usuario";
+			$sql = $pdo->prepare($sql);
+			$sql->bindValue(":id_usuario",$id);
+			$sql->execute();
+
+			// verificar quantos registro tem com essa informação
+			// se encontrado uma registro sera criado uma sessão
+			if ($sql->rowCount() > 0) {
+				$dado = $sql->fetch();
+				$_SESSION['id_habilitado'] = $dado['id_habilitado'];
+				return true;
+			}else {
+				return false;
+				}
+			}
+
+			// controle de acesso busca informações
+			public function buscar_dados_habilitado($id){
+				$pdo = conectar();
+
+				$array = array();
+
+				$sql = "SELECT * FROM habilitados WHERE id_habilitado = :id";
+				$sql = $pdo->prepare($sql);
+				$sql->bindValue("id",$id);
+				$sql->execute();
+
+				if ($sql->rowCount() > 0) {
+					$array = $sql->fetch();
+
+				}
+
+				return $array;
+			}
+}
 
 function cadastrar($dados_usuario){
 		$pdo = conectar();
@@ -210,15 +249,68 @@ function cadastrar($dados_usuario){
 	          return false;
 		    }
 		}
-		//fara a busca de todos os habilitado para pagina index
-		function buscar_todos_habilitado(){
-			
+		//fara alteração do status
+		function atualizar_status($id_habilitado,$atual_status){
+			$pdo = conectar();
+		    if ($atual_status == 0) {
+					$atual_status = 1;
+					try {
+						$atualizar_status = $pdo->prepare('UPDATE habilitados SET status = :status WHERE id_habilitado = :id_habilitado');
+									$atualizar_status->bindValue(":status", 1);
+					        $atualizar_status->bindValue(":id_habilitado",$id_habilitado);
+									$atualizar_status->execute();
+		            return true;
+
+			    } catch (PDOException $e) {
+			        echo "Erro atualizar status habilitado: ".$e->getMessage();
+		          return false;
+			    }
+		    }else {
+					$atual_status = 0;
+					try {
+						$atualizar_status = $pdo->prepare('UPDATE habilitados SET status = :status WHERE id_habilitado = :id_habilitado');
+									$atualizar_status->bindValue(":status",0);
+					        $atualizar_status->bindValue(":id_habilitado",$id_habilitado);
+									$atualizar_status->execute();
+		            return true;
+
+			    } catch (PDOException $e) {
+			        echo "Erro atualizar status habilitado: ".$e->getMessage();
+		          return false;
+			    }
+		    }
+			}
+
+			function atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao){
+					$pdo = conectar();
+					$id = $_SESSION['id_habilitado'];
+				    try {
+							$atualizar_habilitado = $pdo->prepare('UPDATE habilitados SET nome = :nome,
+										nome_apresentacao = :nome_apresentacao,
+										apresentacao = :apresentacao,
+										horario_atendimento = :horario_atendimento,
+										titulo_descricao = :titulo_descricao,
+										texto_descricao = :texto_descricao
+										WHERE id_habilitado = :id');
+
+										$atualizar_habilitado->bindValue(":nome_apresentacao", $nome_apresentacao);
+						        $atualizar_habilitado->bindValue(":apresentacao", $apresentacao);
+										$atualizar_habilitado->bindValue(":horario_atendimento",$horario_atendimento);
+								    $atualizar_habilitado->bindValue(":titulo_descricao", $titulo_descricao);
+										$atualizar_habilitado->bindValue(":texto_descricao", $texto_descricao);
+										$atualizar_habilitado->bindValue(":id",$id);
+
+						        $atualizar_usuario->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro atualizar habilitado: ".$e->getMessage();
+
+			          return false;
+				    }
+				}
 
 
-		}
-		// realizara a busca de apenas um habilitado para mostra da pagina perfil
-		function buscar_um_habilitado(){
 
-
-		}
  ?>

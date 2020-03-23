@@ -5,9 +5,12 @@ include_once "../model/conexao.php";
 if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
     include_once "../model/modelUsuario.php";
     $u = new Logar();
-
     $listaLogged = $u->logged($_SESSION['idUser']);
-
+      if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])) {
+        $a = new Logar();
+        $dados_habilitado = $a->buscar_dados_habilitado($_SESSION['id_habilitado']);
+        
+      }
 
 }else{
   header("Location: ../view/login.php");

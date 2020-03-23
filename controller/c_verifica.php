@@ -7,7 +7,7 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
 }else {
   header("Location: ../view/login.php");
 }
-
+// o arquivo esta sendo utilizado em cadastrohabilitado
 
 
 

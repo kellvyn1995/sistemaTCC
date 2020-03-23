@@ -17,6 +17,10 @@
       <th scope="col">Data</th>
       <th scope="col">Local</th>
       <th scope="col">Evento</th>
+      <th scope="col">
+          <button type="button" class="btn btn-outline-primary">Adiciona</button>
+      </th>
+
     </tr>
   </thead>
   <tbody>
@@ -25,19 +29,13 @@
       <td>30/julho/2020</td>
       <td>IFCE</td>
       <td>Tectel</td>
+      <td>
+        <button type="button" class="btn btn-outline-primary">Primary</button>
+        <button type="button" class="btn btn-outline-danger">Danger</button>
+      </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>15/julho/2020</td>
-      <td>Tauá</td>
-      <td>Festival</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>27/julho/2020</td>
-      <td>Iguatu</td>
-      <td>IguatuFest</td>
-    </tr>
+
+
   </tbody>
 </table>
 

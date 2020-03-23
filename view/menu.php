@@ -18,25 +18,15 @@
                 <a class="nav-link" href="view/perfil.php?pg=perfil">Perfil</a>
             </li>
             <!--se tive uma sessão mostra nome do usuario-->
-            <?php if (isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])): ?>
+
+            <?php if (isset($_SESSION['nome']) && !empty($_SESSION['nome'])): ?>
+              <!--se não tive uma sessão, não mostra nome do usuario-->
               <li class="nav-item">
-                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Bem vindo! <?php
-                  $e = 'index';
-
-                  if (isset($_GET['pg']) && !empty($_GET['pg'])){
-                   $pg = addslashes($_GET['pg']);
-                   if ($pg == $e) {
-                     include "controller/c_bemVindo.php";
-                   }else {
-                     include "../controller/c_bemVindo.php";
-                   }
-                 }
-                   ?></a>
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Bem vindo! <?php echo $_SESSION['nome']; ?></a>
               </li>
-
-
             <?php endif; ?>
-            <?php if (isset($_SESSION['idUser']) == false): ?>
+
+            <?php if (empty($_SESSION['nome'])): ?>
               <!--se não tive uma sessão, não mostra nome do usuario-->
               <li class="nav-item">
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Bem vindo!</a>
@@ -58,8 +48,15 @@
                 Opções de usuario
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Meu perfil</a>
-                <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>
+                <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
+                  <a class="dropdown-item" href="../view/meuPerfil.php">Meu perfil</a>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
+                  <a class="dropdown-item" href="../view/atualizarHabilitado.php?pg=atualizarHabilitado">Editar perfil</a>
+                <?php endif; ?>
+                <?php if (empty($_SESSION['id_habilitado'])): ?>
+                  <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>
+                <?php endif; ?>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
                 <a class="dropdown-item" href="../controller/logout.php">Sair</a>
               </div>
@@ -67,7 +64,7 @@
 
         <?php endif; ?>
         <?php if (isset($_SESSION['idUser']) == false): ?>
-          <button type="button" class="btn btn-secondary"><a href="../view/login.php?pg=login">Entra</a></button>
+          <a type="button" class="btn btn-success" href="../view/login.php?pg=login">Entra</a>
         <?php endif; ?>
     </div>
 </nav>

@@ -1,15 +1,11 @@
 <?php
-include_once "../model/conexao.php";
-
-$id_habilitado = addslashes($_POST['id_h']);
-
-
+include_once "../controller/c_meuPerfil.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil</title>
+    <title>Meu Perfil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!--hack para centralizar o container-->
     <style type="text/css">
@@ -20,8 +16,8 @@ $id_habilitado = addslashes($_POST['id_h']);
     </style>
 </head>
 <body>
-<?php include "menu.php"; ?>
-<?php include "../controller/c_perfil.php"; ?>
+<?php include_once "../view/menu.php"; ?>
+
 <div  class="container centered row p-3 my-3">
 
     <!--slide de fotos-->
@@ -75,8 +71,8 @@ $id_habilitado = addslashes($_POST['id_h']);
 <li class="list-group-item">Horario de atendimento das <?php echo $buscar["horario_atendimento"];?></li>
 </ul>
 <div class="card-body">
-<button type="button" class="btn btn-dark">Contratar</button>
-<a type="button" class="btn btn-warning" href="/view/agenda.php">Consulta Agenda</a>
+<a type="button" class="btn btn-warning" href="/view/agenda.php">Editar Agenda</a>
+<a type="button" class="btn btn-dark" href="/view/agenda.php">Menssagem</a>
 </div>
 </div>
 
