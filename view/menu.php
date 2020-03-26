@@ -57,6 +57,9 @@
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>
                 <?php endif; ?>
+                <?php if ($_SESSION['idUser'] == 1): ?>
+                  <a class="dropdown-item" href="../view/admin.php">Admin</a>
+                <?php endif; ?>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
                 <a class="dropdown-item" href="../controller/logout.php">Sair</a>
               </div>

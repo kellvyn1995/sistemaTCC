@@ -10,8 +10,10 @@
   //
   while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
   $id_h = $lista['id_habilitado'];
+  $ver  = $lista['status'];
   ?>
-
+  <!--ser status for = 1 sera mostrado-->
+<?php if ($ver == 1): ?>
   <tr>
   <!--mostrando resultados da consulta-->
   <form class="" action="view/perfil.php" method="POST">
@@ -27,6 +29,8 @@
       </div>
     </div>
   </form>
+<?php endif; ?>
+
 
 
   <?php  }?>

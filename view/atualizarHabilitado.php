@@ -24,7 +24,7 @@ include_once "../controller/c_consulta.php";
 
   <!--formulario-->
   <div class="container">
-    <form method="POST" action="../controller/c_cadastra_habilitado.php">
+    <form method="POST" action="../controller/c_update_habilitado.php">
       <h3 class="text-center text-white pt-3">EDITAR HABILITADO</h3>
       <!--linha 1-->
       <div class="row">

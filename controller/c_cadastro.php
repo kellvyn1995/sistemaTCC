@@ -27,7 +27,7 @@ if (!empty($dados_usuario->getNome()) && !empty($dados_usuario->getSobreNome()) 
             include_once "../model/modelUsuario.php";
             $status = cadastrar($dados_usuario);
                 if ($status) {
-                  echo "cadastra realizado";
+                  header("Location: ../view/aviso.php?aviso=2");
                 }
           }else {
             header("Location: ../view/cadastroUsuario.php?pg=2");

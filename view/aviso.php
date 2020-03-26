@@ -24,14 +24,30 @@
 
     <?php if ($aviso == 1): ?>
       <div class="jumbotron">
-        <h1 class="display-4">Usuario não é uma habilitado acesso negado!</h1>
+        <h1 class="display-4">Usuario não é um habilitado acesso negado!</h1>
         <p class="lead">Para ter acesso a essa pagina realize o cadastro de habilitado</p>
         <a class="btn btn-primary btn-lg" href="../index.php" role="button">Volta para home</a>
       </div>
     <?php endif; ?>
 
+    <?php if ($aviso == 2): ?>
+      <div class="jumbotron">
+        <h1 class="display-4">Cadastro realizado com sucesso!</h1>
+        <p class="lead">Para ter acesso ao sistema realize o login</p>
+        <a class="btn btn-primary btn-lg" href="../view/login.php" role="button">Realizar login</a>
+      </div>
+    <?php endif; ?>
 
+    <?php if ($aviso == 3): ?>
+      <div class="jumbotron">
+        <h1 class="display-4">Cadastro de habilitado realizado com sucesso!</h1>
+        <p class="lead">Os administradores do sistema faram a analise das suas informações.</p>
+        <p class="lead">O periodo de analise é de um a dois dias.</p>
+        <a class="btn btn-primary btn-lg" href="../index.php" role="button">Volta para home</a>
+      </div>
+    <?php endif; ?>
 
+    
 
     </div>
   </main>

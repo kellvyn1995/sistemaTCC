@@ -81,6 +81,7 @@ class Logar{
 
 				return $array;
 			}
+
 }
 
 function cadastrar($dados_usuario){
@@ -229,15 +230,16 @@ function cadastrar($dados_usuario){
 		function cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario){
 
 			$pdo = conectar();
-
+			$status = 0;
 		    try {
-		        $query = $pdo->prepare("INSERT INTO habilitados (nome_apresentacao, apresentacao,  horario_atendimento, titulo_descricao, texto_descricao, id_usuario) VALUES (:nome_apresentacao, :apresentacao, :horario_atendimento, :titulo_descricao, :texto_descricao, :id_usuario)");
+		        $query = $pdo->prepare("INSERT INTO habilitados (nome_apresentacao, apresentacao,  horario_atendimento, titulo_descricao, texto_descricao,status, id_usuario) VALUES (:nome_apresentacao, :apresentacao, :horario_atendimento, :titulo_descricao, :texto_descricao, :status, :id_usuario)");
 
 			        $query->bindValue(":nome_apresentacao", $nome_apresentacao);
 			        $query->bindValue(":apresentacao", $apresentacao);
 							$query->bindValue(":horario_atendimento",$horario_atendimento);
 					    $query->bindValue(":titulo_descricao", $titulo_descricao);
 							$query->bindValue(":texto_descricao", $texto_descricao);
+							$query->bindValue(":status", $status);
 							$query->bindValue(":id_usuario", $id_usuario);
 
 			        $query->execute();
@@ -285,7 +287,7 @@ function cadastrar($dados_usuario){
 					$pdo = conectar();
 					$id = $_SESSION['id_habilitado'];
 				    try {
-							$atualizar_habilitado = $pdo->prepare('UPDATE habilitados SET nome = :nome,
+							$atualizar_habilitado = $pdo->prepare('UPDATE habilitados SET
 										nome_apresentacao = :nome_apresentacao,
 										apresentacao = :apresentacao,
 										horario_atendimento = :horario_atendimento,
@@ -300,7 +302,7 @@ function cadastrar($dados_usuario){
 										$atualizar_habilitado->bindValue(":texto_descricao", $texto_descricao);
 										$atualizar_habilitado->bindValue(":id",$id);
 
-						        $atualizar_usuario->execute();
+						        $atualizar_habilitado->execute();
 
 			            return true;
 
@@ -311,6 +313,107 @@ function cadastrar($dados_usuario){
 				    }
 				}
 
+				function add_agenda($data_agenda,$local_agenda,$evento_agenda,$informacao_agenda,$id_h){
 
+					$pdo = conectar();
+
+				    try {
+				        $query = $pdo->prepare("INSERT INTO agenda (data, local, evento, informacao, id_habil) VALUES (:data_agenda, :local_agenda, :evento_agenda, :informacao_agenda, :id_habil)");
+					        $query->bindValue(":data_agenda", $data_agenda);
+					        $query->bindValue(":local_agenda", $local_agenda);
+									$query->bindValue(":evento_agenda",$evento_agenda);
+							    $query->bindValue(":informacao_agenda", $informacao_agenda);
+									$query->bindValue(":id_habil", $id_h);
+
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao adicionar na agenda: ".$e->getMessage();
+			          return false;
+				    }
+				}
+
+				// controle de acesso busca informações
+				// utiliza o id do habilitado pra fazer a busca na tela agenda
+				function buscar_dados_agenda($id_h){
+					$pdo = conectar();
+					$sql = "SELECT * FROM agenda WHERE id_habil = :id_habil ORDER BY id_agenda DESC";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_habil",$id_h);
+					$sql->execute();
+					return $sql;
+				}
+				// controle de acesso busca informações
+				// utiliza o id do habilitado pra fazer a busca na tela agenda
+				function buscar_um_dado_da_agenda($id_agenda){
+					$pdo = conectar();
+					$array = array();
+
+					$sql = "SELECT * FROM agenda WHERE id_agenda = :id_agenda";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_agenda",$id_agenda);
+					$sql->execute();
+
+					if ($sql->rowCount() > 0) {
+						$array = $sql->fetch();
+					}
+					return $array;
+				}
+
+				// a função era pega a acção que dever ser executada como add, upate ou delete
+				function get_post_action($name)
+				{
+				    $params = func_get_args();
+
+				    foreach ($params as $name) {
+				        if (isset($_POST[$name])) {
+				            return $name;
+				        }
+				    }
+				}
+				function delete_agenda($id_agenda){
+					$pdo = conectar();
+				    try {
+							$sql = $pdo->prepare('DELETE FROM agenda WHERE id_agenda = :id_agenda');
+							$sql->bindValue(':id_agenda', $id_agenda);
+							$sql->execute();
+
+			         return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao deleta da agenda: ".$e->getMessage();
+			          return false;
+				    }
+
+				}
+
+				function update_agenda($data_agenda,$local_agenda,$evento_agenda,$informacao_agenda,$id_h){
+					$pdo = conectar();
+
+				    try {
+				        $query = $pdo->prepare('UPDATE agenda SET
+									data   = :data_agenda,
+					        local  = :local_agenda,
+									evento = :evento_agenda,
+							    informacao = :informacao_agenda
+									WHERE id_habil = :id_habil');
+
+					        $query->bindValue(":data_agenda", $data_agenda);
+					        $query->bindValue(":local_agenda", $local_agenda);
+									$query->bindValue(":evento_agenda",$evento_agenda);
+							    $query->bindValue(":informacao_agenda", $informacao_agenda);
+									$query->bindValue(":id_habil", $id_h);
+
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao atualiza na agenda: ".$e->getMessage();
+			          return false;
+				    }
+				}
 
  ?>

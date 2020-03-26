@@ -20,6 +20,14 @@ if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) 
           $a = $_SESSION['idUser'];
           if ($u->buscar_um_habilitado($a)) {
             header("Location: ../view/meuPerfil.php");
+              /*$g = $_SESSION['id_habilitado'];
+              // verificar se o habilitado tem uma agneda
+              if ($u->buscar_agenda($g)) {
+                header("Location: ../view/agenda.php?agora=view");
+              }else {
+                header("Location: ../view/meuPerfil.php");
+              } */
+
           }else {
             header("Location: ../index.php?pg=index");
           }

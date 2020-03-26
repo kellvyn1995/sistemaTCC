@@ -12,7 +12,7 @@ include_once "../model/conexao.php";
 </head>
 <body>
 <?php include "../view/menu.php"; ?>
-<form class="" action="../controller/c_status.php" method="POST">
+
 
 <!--habilitados-->
     </tbody>
@@ -42,7 +42,7 @@ $consulta = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
 while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
   $id = $lista['id_habilitado'];
   ?>
-
+<form class="" action="../controller/c_status.php" method="POST">
 
   <tr>
     <!--mostrando resultados da consulta, type="hidden" é um input invisivel -->
@@ -62,7 +62,7 @@ while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
       <button type="button" class="btn btn-danger">Deletar</button>
     </td>
   </tr>
-
+</form>
 
 <?php  }?>
 
@@ -70,7 +70,7 @@ while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
 </table>
 
   </div>
-</form>
+
 
 
 

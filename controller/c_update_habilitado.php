@@ -11,9 +11,9 @@ $texto_descricao = addslashes($_POST['texto_descricao']);
 if (!empty($nome_apresentacao) && !empty($horario_atendimento) && !empty($apresentacao) && !empty($titulo_descricao) && !empty($texto_descricao)) {
             // chama a função para atualizar habilitado
             include_once "../model/modelUsuario.php";
-            $status = atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario);
+            $status = atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao);
                 if ($status) {
-                  echo "cadastra realizado";
+                  header("Location: ../view/meuPerfil.php");
                 }
     }else {
       header("Location: ../view/cadastrohabilitado.php?pg=1");
