@@ -61,39 +61,4 @@ o switch vai chama uma função que vai verifica o name do botão clicado
 
 
 
-// verificar se é pra add, atualizar ou Deletar
-/* if (isset($_GET['agora']) && !empty($_GET['agora'])){
-  $agora = addslashes($_GET['agora']);
-  switch ($agora) {
-    case 'update':
-
-      break;
-    case 'add':
-    // se todos os campos forem diferente de vazio entra na condição
-    if (!empty($data_agenda) && !empty($local_agenda) && !empty($evento_agenda) && !empty($informacao_agenda)) {
-                // chama a função para cadastra novo item na agenda
-                include_once "../model/modelUsuario.php";
-                $add_agenda = add_agenda($data_agenda,$local_agenda,$evento_agenda,$informacao_agenda,$_SESSION['id_habilitado']);
-                    if ($add_agenda) {
-                      header("Location: ../view/agenda.php");
-                    }
-        }else {
-          // erro
-          header("Location: ../view/agenda.php");
-        }
-    break;
-    case 'view':
-
-    break;
-
-    case 'delete':
-      $delete = delete_agenda($id_agenda);
-      if ($delete) {
-        header("Location: ../view/agenda.php");
-      }
-    break;
-
-  }
-} */
-
  ?>

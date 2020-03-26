@@ -1,5 +1,7 @@
 <?php
 include_once "../controller/c_meuPerfil.php";
+$id_habilitado = $_SESSION['id_habilitado'];
+include "../controller/c_perfil.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -95,38 +97,40 @@ include_once "../controller/c_meuPerfil.php";
 </div>
 
 <!--Agenda-->
-<div  class="container centered row p-3 my-3">
-<table class="table table-striped">
-  <thead>
+  <div class="container p-3 my-3">
+    <table class="table table-striped">
+    <thead>AGENDA
+      <tr>
+        <th scope="col">Data</th>
+        <th scope="col">Local</th>
+        <th scope="col">Evento</th>
+        <th scope="col">Informações</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <?php
+  while ($lista = $dados_agenda->fetch(PDO::FETCH_ASSOC)) {
+    $id_ag = $lista['id_agenda'];
+    ?>
+
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Primeiro</th>
-      <th scope="col">Último</th>
-      <th scope="col">Nickname</th>
+      <!--mostrando resultados da consulta-->
+
+      <input type="hidden" name="id_agenda" value="<?php echo $id_ag; ?>" />
+
+      <td name="data_agenda"><?php echo $lista["data"]; ?></td>
+      <td name="local_agenda"><?php echo $lista["local"]; ?></td>
+      <td name="evento_agenda"><?php echo $lista["evento"]; ?></td>
+      <td name="informacao_agenda"><?php echo $lista["informacao"]; ?></td>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+
+
+  <?php  }?>
+
+    </tbody>
+  </table>
+  </div>
 <!--video-->
 <div  class="container centered row p-3 my-3">
   <div class="col-4 form-group embed-responsive embed-responsive-4by3">
