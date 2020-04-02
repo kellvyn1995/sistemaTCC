@@ -12,7 +12,7 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
         if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])) {
 
           $dados_agenda = buscar_dados_agenda($_SESSION['id_habilitado']);
-
+          $dados_imagens = buscar_imagens($_SESSION['id_habilitado']);
         }
       }
 

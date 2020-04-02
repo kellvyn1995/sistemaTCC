@@ -11,12 +11,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="view/ajuda.php">Ajuda</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">opção</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="view/perfil.php?pg=perfil">Perfil</a>
-            </li>
+
             <!--se tive uma sessão mostra nome do usuario-->
 
             <?php if (isset($_SESSION['nome']) && !empty($_SESSION['nome'])): ?>
@@ -53,6 +48,12 @@
                 <?php endif; ?>
                 <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/atualizarHabilitado.php?pg=atualizarHabilitado">Editar perfil</a>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
+                  <a class="dropdown-item" href="../view/agenda.php?pg=agenda">Agenda</a>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
+                  <a class="dropdown-item" href="../view/menssagem.php?pg=menssagem">Menssagens</a>
                 <?php endif; ?>
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>

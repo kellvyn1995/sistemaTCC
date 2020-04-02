@@ -3,7 +3,6 @@
 include_once "../controller/c_verifica.php";
 
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,6 +12,7 @@ include_once "../controller/c_verifica.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+  <?php include "menu.php"; ?>
 <!--conteiner-->
 <div class="container p-3 my-3 bg-dark text-white">
 
@@ -59,6 +59,7 @@ include_once "../controller/c_verifica.php";
         <textarea class="form-control" name="texto_descricao" placeholder="ex: Explique seu trabalho e suas experiências" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
 
+
           <div class="form-group w-100"></div>
           <button type="submit" value="cadastrar" class="btn btn-success">Cadastrar</button>
       </div>
@@ -67,6 +68,7 @@ include_once "../controller/c_verifica.php";
   </div>
 </div>
 
+<?php include "rodape.php"; ?>
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

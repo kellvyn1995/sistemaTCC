@@ -3,12 +3,15 @@
 <div class="row">
 
   <?php
+  include_once "model/modelUsuario.php";
+
 //  include_once "../model/modelUsuario.php"
   $pdo = conectar(); //coneão com banco de dados
   $consulta = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
 
   //
   while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
+  $dados_imagens = buscar_imagens($lista['id_habilitado']);
   $id_h = $lista['id_habilitado'];
   $ver  = $lista['status'];
   ?>
@@ -20,7 +23,7 @@
     <input type="hidden" name="id_h" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
     <div class="form-group col-sm">
       <div class="card " style="width: 18rem;">
-        <img class="card-img-top" src="/media/fotodoperfil.jpeg" alt="Imagem de capa do card">
+        <img class="card-img-top" src="<?php echo $dados_imagens['img_perfil']?>" alt="Imagem de capa do card">
         <div class="card-body">
           <h5 class="card-title text-dark"><?php echo $lista["nome_apresentacao"];?></h5>
           <p class="card-text text-dark"><?php echo $lista["apresentacao"];?></p>

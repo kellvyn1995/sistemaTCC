@@ -415,5 +415,81 @@ function cadastrar($dados_usuario){
 			          return false;
 				    }
 				}
+				// funções para usar na imagens
+				// para cadastrar as imgens na tabela imagens
+				function add_fotos($img_perfil,$img_slide1,$img_slide2,$img_slide3,$img_descricao){
 
+					$pdo = conectar();
+					$id_habil = $_SESSION['id_habilitado'];
+
+				    try {
+				        $query = $pdo->prepare("INSERT INTO imagens (img_perfil, img_slide1, img_slide2, img_slide3, img_descricao, id_habil) VALUES (:img_perfil,:img_slide1,:img_slide2,:img_slide3,:img_descricao,:id_habil)");
+					        $query->bindValue(":img_perfil", $img_perfil);
+					        $query->bindValue(":img_slide1", $img_slide1);
+									$query->bindValue(":img_slide2", $img_slide2);
+							    $query->bindValue(":img_slide3", $img_slide3);
+									$query->bindValue(":img_descricao", $img_descricao);
+									$query->bindValue(":id_habil", $id_habil);
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao adicionar na fotos: ".$e->getMessage();
+			          return false;
+				    }
+				}
+
+				// controle de acesso busca informações
+				// utiliza o id do habilitado pra fazer a busca na tabela imagens
+				function buscar_imagens($id_h){
+					$pdo = conectar();
+					$array = array();
+
+					$sql = "SELECT * FROM imagens WHERE id_habil = :id_habil";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_habil",$id_h);
+					$sql->execute();
+
+					if ($sql->rowCount() > 0) {
+						$array = $sql->fetch();
+						return $array;
+					}else {
+						return false;
+					}
+
+
+				}
+
+
+				function img_delete($id_imagem,$id_h){
+					$dados_imagens = buscar_imagens($id_h);
+					$pdo = conectar();
+				    try {
+							$sql = $pdo->prepare('SELECT * FROM imagens WHERE id_imagem = :id_imagem');
+							$sql->bindValue(':id_imagem', $id_imagem);
+							$sql->execute();
+							if ($sql) {
+								// o unlink e para apaga os arquivos que estão na pasta do servidor
+								unlink($dados_imagens['img_perfil']);
+								unlink($dados_imagens['img_slide1']);
+								unlink($dados_imagens['img_slide2']);
+								unlink($dados_imagens['img_slide3']);
+								unlink($dados_imagens['img_descricao']);
+
+
+								$sql = $pdo->prepare('DELETE FROM imagens WHERE id_imagem = :id_imagem');
+								$sql->bindValue(':id_imagem', $id_imagem);
+								$sql->execute();
+
+								 return true;
+							}
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao deleta da agenda: ".$e->getMessage();
+			          return false;
+				    }
+
+
+				}
  ?>

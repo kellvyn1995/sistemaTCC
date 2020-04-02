@@ -33,20 +33,15 @@ include "../controller/c_perfil.php";
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/media/01.jpeg" class="d-block w-100" alt="...">
+      <img src="<?php echo $dados_imagens['img_slide1']?>" class="d-block w-100" alt="..." >
     </div>
     <div class="carousel-item">
-      <img src="/media/02.jpeg" class="d-block w-100" alt="...">
+      <img src="<?php echo $dados_imagens['img_slide2']?>" class="d-block w-100" alt="..." >
     </div>
     <div class="carousel-item">
-      <img src="/media/03.jpeg" class="d-block w-100" alt="...">
+      <img src="<?php echo $dados_imagens['img_slide3']?>" class="d-block w-100" alt="..." >
     </div>
-    <div class="carousel-item">
-      <img src="/media/04.jpeg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="/media/04.jpeg" class="d-block w-100" alt="...">
-    </div>
+
 
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -64,7 +59,7 @@ include "../controller/c_perfil.php";
    <!--informações do perfil-->
 
 <div class="card row col-12 col-sm-12 col-md-4" style="width: 18rem;">
-<img src="/media/fotodoperfil.jpeg" class="card-img-top my-3" alt="...">
+<img src="<?php echo $dados_imagens['img_perfil']?>" class="card-img-top my-3" alt="...">
 <div class="card-body">
 <h5 class="card-title"><?php echo $buscar["nome_apresentacao"];?></h5>
 <p class="card-text"><?php echo $buscar["apresentacao"];?></p>
@@ -74,7 +69,7 @@ include "../controller/c_perfil.php";
 </ul>
 <div class="card-body">
 <a type="button" class="btn btn-warning" href="/view/agenda.php">Editar Agenda</a>
-<a type="button" class="btn btn-dark" href="/view/agenda.php">Menssagem</a>
+<a type="button" class="btn btn-dark" href="/view/menssagem.php">Menssagem</a>
 </div>
 </div>
 
@@ -85,7 +80,7 @@ include "../controller/c_perfil.php";
 <div  class="container centered row p-3 my-3">
   <!--informações extras-->
   <div class="media col-12 col-sm-12 col-md-4">
-    <img class="rounded-circle align-self-start mr-3" src="/media/06.jpeg" alt="Generic placeholder image" style="width: 300px; height: 300px;">
+    <img class="rounded-circle align-self-start mr-3" src="<?php echo $dados_imagens['img_descricao']?>" alt="Generic placeholder image" style="width: 300px; height: 300px;">
   </div>
   <div class="media-body col-12 col-sm-12 col-md-8">
     <h5 class="mt-0"><?php echo $buscar["titulo_descricao"];?></h5>
@@ -133,16 +128,16 @@ include "../controller/c_perfil.php";
   </div>
 <!--video-->
 <div  class="container centered row p-3 my-3">
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
+    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
   </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
+    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  ></iframe>
   </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
+    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
   </div>
 
 </div>

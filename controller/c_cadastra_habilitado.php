@@ -24,7 +24,7 @@ if (!empty($nome_apresentacao) && !empty($horario_atendimento) && !empty($aprese
             include_once "../model/modelUsuario.php";
             $status = cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario);
                 if ($status) {
-                  header("Location: ../view/aviso.php?aviso=3");
+                  header("Location: ../view/atualizarHabilitado.php?pg=");
                 }
     }else {
       header("Location: ../view/cadastrohabilitado.php?pg=1");

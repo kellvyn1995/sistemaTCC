@@ -44,12 +44,13 @@ include_once "model/conexao.php";
             include_once "view/adastrohabilitado.php";
         break;
 
-        
+
       }
       ?>
 
 
     </div>
+    <?php include "view/rodape.php"; ?>
   </main>
 
 

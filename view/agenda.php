@@ -1,6 +1,7 @@
 <?php
 include_once "../controller/c_verifica.php";
 include_once "../controller/c_consulta.php";
+include_once "../controller/c_verifica_h.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,7 +24,7 @@ include_once "../controller/c_consulta.php";
         <th scope="col">Evento</th>
         <th scope="col">Informações</th>
         <th scope="col">
-            
+
             <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#siteModal"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></button>
         </th>
       </tr>
@@ -115,6 +116,7 @@ include_once "../controller/c_consulta.php";
 
   </div>
 </form>
+<?php include "rodape.php"; ?>
 
 
 

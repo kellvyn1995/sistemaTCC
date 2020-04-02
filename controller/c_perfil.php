@@ -9,5 +9,6 @@ $consulta = $pdo->query("SELECT * FROM habilitados WHERE id_habilitado = $id_hab
 $buscar = $consulta->fetch(PDO::FETCH_ASSOC);
 
 $dados_agenda = buscar_dados_agenda($id_habilitado);
+$dados_imagens = buscar_imagens($id_habilitado);
 
  ?>
