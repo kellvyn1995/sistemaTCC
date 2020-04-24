@@ -45,6 +45,11 @@ include_once "../controller/c_verifica_h.php";
           <label for="" class="my-2">Texto de descrição</label>
           <textarea class="form-control" name="texto_descricao"  id="exampleFormControlTextarea1" rows="3" ><?php echo $dados_habilitado['texto_descricao']?></textarea>
         </div>
+        <h5>hashtags relacionadas a você</h5>
+        <div class="form-group col-md-6">
+          <label for="">exemplo: #moda #cultura #teatro</label>
+        <input type="text" name="hashtags" class="form-control"  maxlength="255" value="<?php echo $dados_habilitado['hashtags']?> " >
+        </div>
           <div class="form-group w-100"></div>
           <button type="submit" name="atualiza" class="btn btn-success">Salva</button>
       </div>
@@ -79,27 +84,53 @@ include_once "../controller/c_verifica_h.php";
 </div>
 <!--link para os videos-->
 <div class="container p-3 my-3 bg-dark text-white">
-    <h5>LINK dos seus videos</h5>
-    <div class="form-group col-md-6">
-      <label for="">video 1</label>
-    <input type="text" name="nome_apresentacao" class="form-control"  maxlength="255" value="" >
+    <form class="" action="../controller/c_update_habilitado.php" method="post">
+      <input type="hidden" name="id_links" class="form-control"  maxlength="" value=" <?php echo $dados_links['id_links'];?>" >
+      <h5>LINK dos seus videos</h5>
+      <div class="container row centered row  ">
 
-    <label for="" class="my-2">video 2</label>
-    <input type="text"  name="horario_atendimento" class="form-control"  maxlength="255" value="">
+        <?php if (!empty($dados_links['link1'])): ?>
+          <div class="col-sm-3 form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 5px 5px 0px 0px;">
+          <?php echo $a = html_entity_decode($dados_links['link1']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
+          </div>
+        <?php endif; ?>
+        <?php if (empty($dados_links['link1'])): ?>
+          <label for="">video 1</label>
+          <input type="text" name="link1" class="form-control"  maxlength="" value="" >
+        <?php endif; ?>
 
-    <label for="" class="my-2">video 3</label>
-      <input type="text" name="titulo_descricao" class="form-control"  maxlength="255" value="">
-    </div>
+        <?php if (!empty($dados_links['link2'])): ?>
+          <div class="col-sm-3 form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 5px 5px 0px 0px;">
+          <?php echo $a = html_entity_decode($dados_links['link2']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
+          </div>
+        <?php endif; ?>
+        <?php if (empty($dados_links['link2'])): ?>
+            <label for="" class="my-2">video 2</label>
+          <input type="text" name="link2" class="form-control"  maxlength="" value="" >
+        <?php endif; ?>
 
+        <?php if (!empty($dados_links['link3'])): ?>
+          <div class="col-sm-3 form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 5px 5px 0px 0px;">
+          <?php echo $a = html_entity_decode($dados_links['link3']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
+          </div>
+        <?php endif; ?>
+        <?php if (empty($dados_links['link3'])): ?>
+            <label for="" class="my-2">video 3</label>
+          <input type="text" name="link3" class="form-control"  maxlength="" value="" >
+        <?php endif; ?>
+      </div>
+      <?php if (empty($dados_links['id_links'])): ?>
+        <button type="submit" name="add_links" class="btn btn-success">Add videos</button>
+      <?php endif; ?>
+      <?php if (!empty($dados_links['id_links'])): ?>
+        <div class="" style="margin: 5px 5px 0px 0px;">
+          <button type="submit" name="delete_link" class="btn btn-danger">Deleta videos</button>
+        </div>
+      <?php endif; ?>
+
+    </form>
 </div>
-<!--adicionar as # -->
-<div class="container p-3 my-3 bg-dark text-white">
-  <h5>hashtags relacionadas a você</h5>
-  <div class="form-group col-md-6">
-    <label for="">exemplo: #moda #cultura #teatro</label>
-  <input type="text" name="nome_apresentacao" class="form-control"  maxlength="255" value="" >
-  </div>
-</div>
+
 
 <!--  MODAL -->
 <form class="" action="../controller/c_update_habilitado.php" method="POST" enctype="multipart/form-data">

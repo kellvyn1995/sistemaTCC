@@ -30,9 +30,10 @@
 
         </ul>
 
-        <form class="form-inline my-2 my-lg-0 mr-3">
-            <input class="form-control mr-sm-2" type="search" placeholder="Digite o que procura" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisa</button>
+        <form class="form-inline my-2 my-lg-0 mr-3" method="post" action="../index.php">
+            <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Digite o que procura" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" name="envioBusca" type="submit">Pesquisa</button>
+            <input type="hidden" name="env" value="envBusca">
         </form>
 
         <!--menu logado-->
@@ -52,8 +53,8 @@
                 <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/agenda.php?pg=agenda">Agenda</a>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
-                  <a class="dropdown-item" href="../view/menssagem.php?pg=menssagem">Menssagens</a>
+                <?php if (isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])): ?>
+                  <a class="dropdown-item" href="../view/mensagem.php?pg=menssagem">Mensagens</a>
                 <?php endif; ?>
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>

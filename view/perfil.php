@@ -2,7 +2,7 @@
 include_once "../model/conexao.php";
 
 $id_habilitado = addslashes($_POST['id_h']);
-
+$id_m = addslashes($_POST['id_m']);
 
 ?>
 <!DOCTYPE html>
@@ -69,7 +69,11 @@ $id_habilitado = addslashes($_POST['id_h']);
 <li class="list-group-item">Horario de atendimento das <?php echo $buscar["horario_atendimento"];?></li>
 </ul>
 <div class="card-body">
-<button type="button" class="btn btn-dark">Contratar</button>
+  <form class="" action="../view/mensagem.php" method="post">
+    <button type="submit" class="btn btn-dark" name="mensagem">Contratar</button>
+    <input type="hidden" name="id_m" value="<?php echo $id_m;?>" /> <!-- input invisivel-->
+  </form>
+
 
 </div>
 </div>
@@ -128,21 +132,20 @@ $id_habilitado = addslashes($_POST['id_h']);
   </table>
   </div>
 
-<!--video-->
-<div  class="container centered row p-3 my-3">
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3">
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
+  <!--video-->
+  <div  class="container row centered row p-3 ">
+    <div class="col-sm form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 0px 5px 0px 0px;">
+    <?php echo $a = html_entity_decode($dados_links['link1']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
+    </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3">
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
+    <div class="col-sm form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 0px 5px 0px 0px;" >
+      <?php echo $a = html_entity_decode($dados_links['link2']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
+    </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3">
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="col-sm form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 0px 5px 0px 0px;">
+      <?php echo $a = html_entity_decode($dados_links['link3']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
+    </div>
   </div>
-
-</div>
 <!--fim video-->
 
 

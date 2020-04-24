@@ -127,19 +127,18 @@ include "../controller/c_perfil.php";
   </table>
   </div>
 <!--video-->
-<div  class="container centered row p-3 my-3">
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+<div  class="container row centered row p-3 ">
+  <div class="col-sm form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 0px 5px 0px 0px;">
+  <?php echo $a = html_entity_decode($dados_links['link1']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
   </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  ></iframe>
+  <div class="col-sm form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 0px 5px 0px 0px;" >
+    <?php echo $a = html_entity_decode($dados_links['link2']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
   </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+  <div class="col-sm form-group embed-responsive embed-responsive-4by3 rounded" style="margin: 0px 5px 0px 0px;">
+    <?php echo $a = html_entity_decode($dados_links['link3']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres?>
   </div>
-
 </div>
 <!--fim video-->
 

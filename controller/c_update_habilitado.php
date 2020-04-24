@@ -5,7 +5,7 @@ include_once "c_consulta.php";
     /*
     o switch vai chama uma função que vai verifica o name do botão clicado
     */
-     switch (get_post_action('atualiza', 'add_img', 'delete','add_video','add_#')) {
+     switch (get_post_action('atualiza', 'add_img', 'delete','add_links','delete_link')) {
         case 'atualiza':
 
         $nome_apresentacao = addslashes($_POST['nome_apresentacao']);
@@ -13,12 +13,12 @@ include_once "c_consulta.php";
         $horario_atendimento = addslashes($_POST['horario_atendimento']);
         $titulo_descricao = addslashes($_POST['titulo_descricao']);
         $texto_descricao = addslashes($_POST['texto_descricao']);
-
+        $hashtags = addslashes($_POST['hashtags']);
         // se todos os campos forem diferente de vazio entra na condição
         if (!empty($nome_apresentacao) && !empty($horario_atendimento) && !empty($apresentacao) && !empty($titulo_descricao) && !empty($texto_descricao)) {
                     // chama a função para atualizar habilitado
                     include_once "../model/modelUsuario.php";
-                    $status = atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao);
+                    $status = atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$hashtags);
                         if ($status) {
                           header("Location: ../view/meuPerfil.php");
                         }
@@ -70,9 +70,25 @@ include_once "c_consulta.php";
               }
             break;
 
-        case 'mudar':
-
+        case 'add_links':
+                $link1 = html_entity_decode($_POST['link1']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+                $link2 = html_entity_decode($_POST['link2']); // html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+                $link3 = html_entity_decode($_POST['link3']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+                  $link_info = add_links($link1,$link2,$link3);
+                  if ($link_info) {
+                    header("Location: ../view/meuPerfil.php");
+                  }
                 break;
+
+                case 'delete_link':
+                      $id_links = $_POST['id_links'];
+                      $link_info = delete_links($id_links);
+                        if ($link_info) {
+                          header("Location: ../view/meuPerfil.php");
+                        }else {
+                          echo "não deu certo";
+                        }
+                      break;
 
         default:
             //no action sent

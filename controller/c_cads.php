@@ -6,12 +6,22 @@
   include_once "model/modelUsuario.php";
 
 //  include_once "../model/modelUsuario.php"
-  $pdo = conectar(); //coneão com banco de dados
-  $consulta = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
+//  $pdo = conectar(); //coneão com banco de dados
+//  $resultado = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
+if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
 
-  //
-  while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
+    $buscar = addslashes($_POST['buscar']);
+    $resultado = buscar($buscar);
+
+
+}else {
+  $buscar = false;
+  $resultado = buscar($buscar);
+}
+
+  while ($lista = $resultado->fetch(PDO::FETCH_ASSOC)){
   $dados_imagens = buscar_imagens($lista['id_habilitado']);
+  $id_m = $lista['id_usuario'];
   $id_h = $lista['id_habilitado'];
   $ver  = $lista['status'];
   ?>
@@ -20,6 +30,7 @@
   <tr>
   <!--mostrando resultados da consulta-->
   <form class="" action="view/perfil.php" method="POST">
+    <input type="hidden" name="id_m" value="<?php echo $id_m;?>" /> <!-- input invisivel-->
     <input type="hidden" name="id_h" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
     <div class="form-group col-sm">
       <div class="card " style="width: 18rem;">
@@ -36,7 +47,7 @@
 
 
 
-  <?php  }?>
+<?php }?>
 
 
 </div>

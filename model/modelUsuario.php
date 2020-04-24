@@ -283,7 +283,7 @@ function cadastrar($dados_usuario){
 		    }
 			}
 
-			function atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao){
+			function atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$hashtags){
 					$pdo = conectar();
 					$id = $_SESSION['id_habilitado'];
 				    try {
@@ -292,7 +292,8 @@ function cadastrar($dados_usuario){
 										apresentacao = :apresentacao,
 										horario_atendimento = :horario_atendimento,
 										titulo_descricao = :titulo_descricao,
-										texto_descricao = :texto_descricao
+										texto_descricao = :texto_descricao,
+										hashtags = :hashtags
 										WHERE id_habilitado = :id');
 
 										$atualizar_habilitado->bindValue(":nome_apresentacao", $nome_apresentacao);
@@ -300,6 +301,7 @@ function cadastrar($dados_usuario){
 										$atualizar_habilitado->bindValue(":horario_atendimento",$horario_atendimento);
 								    $atualizar_habilitado->bindValue(":titulo_descricao", $titulo_descricao);
 										$atualizar_habilitado->bindValue(":texto_descricao", $texto_descricao);
+										$atualizar_habilitado->bindValue(":hashtags", $hashtags);
 										$atualizar_habilitado->bindValue(":id",$id);
 
 						        $atualizar_habilitado->execute();
@@ -362,7 +364,7 @@ function cadastrar($dados_usuario){
 					return $array;
 				}
 
-				// a função era pega a acção que dever ser executada como add, upate ou delete
+				// a função ira pega a ação que dever ser executada como add, upate ou delete
 				function get_post_action($name)
 				{
 				    $params = func_get_args();
@@ -492,4 +494,115 @@ function cadastrar($dados_usuario){
 
 
 				}
+
+				// parte dos links dos videos
+				function add_links($link1,$link2,$link3){
+
+					$pdo = conectar();
+					$id_h = $_SESSION['id_habilitado'];
+				    try {
+				        $query = $pdo->prepare("INSERT INTO links (link1, link2, link3, id_h_link) VALUES (:link1, :link2, :link3, :id_h_link)");
+					        $query->bindValue(":link1", $link1);
+					        $query->bindValue(":link2", $link2);
+									$query->bindValue(":link3",$link3);
+									$query->bindValue(":id_h_link", $id_h);
+
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao adicionar na tabela links: ".$e->getMessage();
+			          return false;
+				    }
+				}
+				// controle de acesso busca informações
+				// utiliza o id do habilitado pra fazer a busca na tabela links
+				function buscar_links($id_h){
+					$pdo = conectar();
+					$array = array();
+					$sql = "SELECT * FROM links WHERE id_h_link = :id_h_link";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_h_link",$id_h);
+					$sql->execute();
+					if ($sql->rowCount() > 0) {
+						$array = $sql->fetch();
+						return $array;
+					}else {
+						return false;
+					}
+
+
+				}
+				function delete_links($id_links){
+					$pdo = conectar();
+						try {
+
+								$sql = $pdo->prepare('DELETE FROM links WHERE id_links = :id_links');
+								$sql->bindValue(':id_links', $id_links);
+								$sql->execute();
+
+								 return true;
+
+
+						} catch (PDOException $e) {
+								echo "Erro ao deleta tabela links: ".$e->getMessage();
+								return false;
+						}
+
+				}
+
+				// sistema de buscar
+				// controle de acesso busca informações
+				// utiliza pega a informação digitada e realizar a busca na tabela
+				function buscar($buscar){
+					$pdo = conectar();
+					if (!empty($buscar)) {
+						$sql = "SELECT * FROM habilitados WHERE nome_apresentacao LIKE '%$buscar%' OR apresentacao LIKE '%$buscar%' OR hashtags LIKE '%$buscar%';";
+						$sql = $pdo->prepare($sql);
+						$sql->execute();
+						return $sql;
+					}else {
+						$sql = "SELECT * FROM habilitados";
+						$sql = $pdo->prepare($sql);
+						$sql->execute();
+						return $sql;
+					}
+				}
+
+				function buscar_mensagens(){
+					$pdo = conectar();
+					$sql = "SELECT * FROM chat ORDER BY id_mensagem DESC";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+				}
+				function buscar_uma_conversa($id_remetente,$id_destino){
+					$pdo = conectar();
+					$sql = "SELECT * FROM usuarios WHERE id_remetente = :id_remetente, id_destino = :id_destino ";
+					$sql->bindValue(':id_remetente', $id_remetente);
+					$sql->bindValue(':id_destino', $id_destino);
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+				}
+				function envia_mensagem($id_remetente,$id_destino,$mensagem_enviada){
+					$pdo = conectar();
+					try {
+							$query = $pdo->prepare("INSERT INTO chat (id_remetente,id_destino,mensagem) VALUES (:id_remetente,:id_destino,:mensagem)");
+								$query->bindValue(":id_remetente", $id_remetente);
+								$query->bindValue(":id_destino", $id_destino);
+								$query->bindValue(":mensagem",$mensagem_enviada);
+
+
+								$query->execute();
+
+								return true;
+
+					} catch (PDOException $e) {
+							echo "Erro ao envia mensagem: ".$e->getMessage();
+							return false;
+					}
+				}
+
  ?>

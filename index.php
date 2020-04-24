@@ -1,6 +1,9 @@
 <?php
 include_once "model/conexao.php";
-// include_once "controller/c_verifica.php";
+/*data = new DateTime(); //captura a data e hora
+echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
+
+//include_once "controller/c_buscar.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -47,8 +50,6 @@ include_once "model/conexao.php";
 
       }
       ?>
-
-
     </div>
     <?php include "view/rodape.php"; ?>
   </main>
