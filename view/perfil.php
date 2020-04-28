@@ -69,9 +69,13 @@ $id_m = addslashes($_POST['id_m']);
 <li class="list-group-item">Horario de atendimento das <?php echo $buscar["horario_atendimento"];?></li>
 </ul>
 <div class="card-body">
-  <form class="" action="../view/mensagem.php" method="post">
-    <button type="submit" class="btn btn-dark" name="mensagem">Contratar</button>
-    <input type="hidden" name="id_m" value="<?php echo $id_m;?>" /> <!-- input invisivel-->
+  <form class="row" action="../view/mensagem.php" method="post">
+    <a  href="#"><img src="../media/iconi/facebook.png" alt=""> </a>
+    <a  href="#"><img src="../media/iconi/instagram.png" alt=""> </a>
+    <a  href="#"><img src="../media/iconi/linkedin.png" alt=""> </a>
+
+    <!--<button type="submit" class="btn btn-dark" name="mensagem">Contratar</button>
+    <input type="hidden" name="id_m" value="" /> input invisivel-->
   </form>
 
 
@@ -147,15 +151,33 @@ $id_m = addslashes($_POST['id_m']);
     </div>
   </div>
 <!--fim video-->
-
+<div class="container centered row p-3 my-3 bg-dark text-white">
+  <ul class="list-unstyled">
+  <li class="media">
+    <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">List-based media object</h5>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+  </li>
+  <li class="media my-4">
+    <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">List-based media object</h5>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+  </li>
+  <li class="media">
+    <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
+    <div class="media-body">
+      <h5 class="mt-0 mb-1">List-based media object</h5>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+  </li>
+</ul>
+</div>
 
 <?php include "rodape.php"; ?>
-
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
