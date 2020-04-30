@@ -8,6 +8,18 @@
 //  include_once "../model/modelUsuario.php"
 //  $pdo = conectar(); //coneão com banco de dados
 //  $resultado = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
+switch (get_post_action('volta','proxima','btbusca')) {
+  case '':
+
+
+    break;
+
+  default:
+    // code...
+    break;
+}
+
+
 if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
 
     $buscar = addslashes($_POST['buscar']);
@@ -44,9 +56,6 @@ if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
     </div>
   </form>
 <?php endif; ?>
-
-
-
 <?php }?>
 
 

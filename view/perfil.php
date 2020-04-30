@@ -1,9 +1,10 @@
 <?php
 include_once "../model/conexao.php";
-
 $id_habilitado = addslashes($_POST['id_h']);
 $id_m = addslashes($_POST['id_m']);
-
+if (isset($_POST['var'])) {
+  include_once "../controller/c_comentario.php";
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -11,13 +12,10 @@ $id_m = addslashes($_POST['id_m']);
     <meta charset="UTF-8">
     <title>Perfil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!--hack para centralizar o container-->
-    <style type="text/css">
-    .centered {
-    margin: 0 auto !important;
-    float: none !important;
-    }
-    </style>
+    <link rel="stylesheet" href="../libs/CSS/estilo.css">
+
 </head>
 <body>
 <?php include "menu.php"; ?>
@@ -151,31 +149,144 @@ $id_m = addslashes($_POST['id_m']);
     </div>
   </div>
 <!--fim video-->
-<div class="container centered row p-3 my-3 bg-dark text-white">
-  <ul class="list-unstyled">
-  <li class="media">
-    <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+<!--nota-->
+<div class="container avaliacao ">
+
+
+  <div class="row">
+  <div class="col-4">
+      <!--quatidade estrela-->
+                <div class="col-xs-12 col-md-6 text-center">
+                      <h1 class="rating-num">
+                          4.0</h1>
+                      <div class="rating">
+                          <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                          </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                          </span><span class="glyphicon glyphicon-star-empty"></span>
+                      </div>
+                      <div>
+                          <span class="glyphicon glyphicon-user"></span>1,050,008 total
+                      </div>
+                  </div>
+      <!--fim quatidade estrela-->
+  </div>
+  <div class="col-8">
+      <!--as barras-->
+      <div class="col">&#9733; 5
+        <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="col">&#9733; 4
+        <div class="progress">
+        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="col">&#9733; 3
+        <div class="progress">
+        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="col ">&#9733; 2
+        <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      <div class="col">&#9733; 1
+        <div class="progress">
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+      <!--fim barras-->
+  </div>
+  </div>
+
+  </div>
+
+
+
+
+<!--fim nota-->
+
+<!--comentarios-->
+<div class="container centered row p-3 my-3 bg-dark text-white comentario">
+  <div class="container">
+    <ul class="list-unstyled">
+      <?php
+  while ($com = $comentarios->fetch(PDO::FETCH_ASSOC)) {
+    ?>
+    <?php if ($com['id_p'] == $id_habilitado): ?>
+      <li class="media my-4">
+        <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
+        <div class="media-body">
+          <h5 class="mt-0 mb-1"><?php echo $com['nome'];?></h5>
+
+          <?php echo $com['comentario'];?>
+        </div>
+      </li>
+    <?php endif; ?>
+  <?php  }?>
+  </ul>
+  </div>
+
+  <?php
+  if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser']) && $_SESSION['idUser'] != $id_m){?>
+<form class="row container centered row p-3 my-3 bg-dark text-white comentario" action="" method="post" name="novoCOM">
+  <div class="row container centered row p-3 my-3 bg-dark text-white comentario">
+    <div class="col-10">
+      <input type="hidden" name="habilitado" value="<?php echo $id_habilitado?>">
+      <input type="hidden" name="usuario" value="<?php echo $_SESSION['idUser']?>">
+      <input type="hidden" name="id_h" value="<?php echo $id_habilitado?>">
+      <input type="hidden" name="id_m" value="<?php echo $id_m?>">
+      <input type="hidden" name="var" value="ação">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <textarea class="form-control" name="comentario" placeholder="Digite seu comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label class="sr-only" for="inlineFormInputGroupUsername2">nome de usuario</label>
+          </div>
+
+        </div>
+      </div>
+
     </div>
-  </li>
-  <li class="media my-4">
-    <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    <div class="col-2">
+      <!--nota-->
+      <div class="col">
+        <div class="input-group ">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@ <?php echo $_SESSION['nome']; ?></div>
+          </div>
+
+        </div>
+        <div class="form-check ">
+          <div class="estrelas">
+          <input type="radio" id="cm_star-empty" name="fb" value="0" checked/>
+          <label for="cm_star-1"><i class="fa"></i></label>
+          <input type="radio" id="cm_star-1" name="fb" value="1"/>
+          <label for="cm_star-2"><i class="fa"></i></label>
+          <input type="radio" id="cm_star-2" name="fb" value="2"/>
+          <label for="cm_star-3"><i class="fa"></i></label>
+          <input type="radio" id="cm_star-3" name="fb" value="3"/>
+          <label for="cm_star-4"><i class="fa"></i></label>
+          <input type="radio" id="cm_star-4" name="fb" value="4"/>
+          <label for="cm_star-5"><i class="fa"></i></label>
+          <input type="radio" id="cm_star-5" name="fb" value="5"/>
+          <button type="submit" class="btn btn-primary mb-2" >Envia</button>
+        </div>
+        </div>
+      </div>
+      <!--fim nota-->
     </div>
-  </li>
-  <li class="media">
-    <img src="../media/iconi/boneco.png" class="mr-3" alt="...">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">List-based media object</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-  </li>
-</ul>
+  </div>
+  </form>
+  <?php }?>
 </div>
+<!--comentar-->
 
 <?php include "rodape.php"; ?>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

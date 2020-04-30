@@ -1,0 +1,24 @@
+
+
+.centered {
+margin: 0 auto !important;
+float: none !important;
+}
+.comentario{
+  border-radius: 25px;
+  margin: 50px 50px 50px 50px;
+}
+.botaoC{
+  margin-right: auto;
+}
+
+.estrelas input[type=radio] {
+  display: none;
+}
+.estrelas label i.fa:before {
+  content:'\f005';
+  color: #FC0;
+}
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #CCC;
+}

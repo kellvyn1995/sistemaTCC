@@ -58,8 +58,11 @@ include_once "../controller/c_verifica.php";
           <label for="" class="my-2">Texto de descrição</label>
         <textarea class="form-control" name="texto_descricao" placeholder="ex: Explique seu trabalho e suas experiências" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
-
-
+        <h5>hashtags relacionadas a você</h5>
+        <div class="form-group col-md-6">
+          <label for="">exemplo: #moda #cultura #teatro</label>
+        <input type="text" name="hashtags" class="form-control"  maxlength="255" value="" >
+        </div>
           <div class="form-group w-100"></div>
           <button type="submit" value="cadastrar" class="btn btn-success">Cadastrar</button>
       </div>

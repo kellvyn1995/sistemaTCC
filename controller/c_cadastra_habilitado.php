@@ -16,13 +16,13 @@ $apresentacao = addslashes($_POST['apresentacao']);
 $horario_atendimento = addslashes($_POST['horario_atendimento']);
 $titulo_descricao = addslashes($_POST['titulo_descricao']);
 $texto_descricao = addslashes($_POST['texto_descricao']);
-
+$hashtags = addslashes($_POST['hashtags']);
 
 // se todos os campos forem diferente de vazio entra na condição
 if (!empty($nome_apresentacao) && !empty($horario_atendimento) && !empty($apresentacao) && !empty($titulo_descricao) && !empty($texto_descricao)) {
             // chama a função para cadastra habilitado
             include_once "../model/modelUsuario.php";
-            $status = cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario);
+            $status = cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario,$hashtags);
                 if ($status) {
                   header("Location: ../view/atualizarHabilitado.php?pg=");
                 }

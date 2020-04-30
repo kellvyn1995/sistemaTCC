@@ -51,6 +51,31 @@ echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
       }
       ?>
     </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+          <nav aria-label="Navegação de página exemplo" >
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="index.php?pg=volta" value="anterio">Anterior</a></li>
+            <li class="page-item"><a class="page-link" href="#" value="anterio">1</a></li>
+            <li class="page-item"><a class="page-link" href="#" value="anterio">2</a></li>
+            <li class="page-item"><a class="page-link" href="#" value="anterio">3</a></li>
+            <li class="page-item"><a class="page-link" href="index.php?pg=proximo" value="anterio">Próximo</a></li>
+          </ul>
+        </nav>
+        </div>
+        <div class="col-sm">
+
+        </div>
+      </div>
+    </div>
+
+
     <?php include "view/rodape.php"; ?>
   </main>
 

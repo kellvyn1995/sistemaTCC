@@ -1,33 +1,49 @@
 <?php
-include_once "../controller/c_meuPerfil.php";
-$id_habilitado = $_SESSION['id_habilitado'];
-include "../controller/c_perfil.php";
-?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>cadastrto de usuario</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-<!--conteiner-->
-<div class="container p-3 my-3 bg-dark text-white">
+if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){?>
+  <form class="" action="../controller/c_comentario.php" method="post">
+    <div class="row container centered row p-3 my-3 bg-dark text-white comentario">
+      <div class="col-8">
+        <input type="hidden" name="habilitado" value="<?php echo $id_habilitado?>">
+        <input type="hidden" name="usuario" value="<?php echo $id_m?>">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <textarea class="form-control" name="comentario" placeholder="Digite seu comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <label class="sr-only" for="inlineFormInputGroupUsername2">nome de usuario</label>
+            </div>
 
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
-    <iframe style="margin: 5px;" width="560" height="315" src="https://www.youtube.com/embed/jh-OwzU2Qj8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen  ></iframe>
-  </div>
-  <div class="col-4 form-group embed-responsive embed-responsive-4by3" >
-    <?php $a = html_entity_decode($dados_links['link1']);
-    echo $a;
-     ?>
+          </div>
+        </div>
 
-    <input type="text" name="" value=" <?php html_entity_decode($dados_links['link1']); ?>">
+      </div>
+      <div class="col-4">
+        <!--nota-->
+        <div class="col">
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@ <?php echo $_SESSION['nome']; ?></div>
+            </div>
 
-  </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
-</html>
+          </div>
+          <div class="form-check ">
+            <div class="estrelas">
+            <input type="radio" id="cm_star-empty" name="fb" value="0" checked/>
+            <label for="cm_star-1"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-1" name="fb" value="1"/>
+            <label for="cm_star-2"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-2" name="fb" value="2"/>
+            <label for="cm_star-3"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-3" name="fb" value="3"/>
+            <label for="cm_star-4"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-4" name="fb" value="4"/>
+            <label for="cm_star-5"><i class="fa"></i></label>
+            <input type="radio" id="cm_star-5" name="fb" value="5"/>
+            <button type="submit" class="btn btn-primary mb-2" >Envia</button>
+          </div>
+          </div>
+        </div>
+        <!--fim nota-->
+      </div>
+    </div>
+    </form>
+<?php }?>

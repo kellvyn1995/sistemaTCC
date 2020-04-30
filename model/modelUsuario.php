@@ -227,18 +227,19 @@ function cadastrar($dados_usuario){
     }
 
 
-		function cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario){
+		function cadastrar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$id_usuario,$hashtags){
 
 			$pdo = conectar();
 			$status = 0;
 		    try {
-		        $query = $pdo->prepare("INSERT INTO habilitados (nome_apresentacao, apresentacao,  horario_atendimento, titulo_descricao, texto_descricao,status, id_usuario) VALUES (:nome_apresentacao, :apresentacao, :horario_atendimento, :titulo_descricao, :texto_descricao, :status, :id_usuario)");
+		        $query = $pdo->prepare("INSERT INTO habilitados (nome_apresentacao, apresentacao,  horario_atendimento, titulo_descricao, texto_descricao,hashtags, status, id_usuario) VALUES (:nome_apresentacao, :apresentacao, :horario_atendimento, :titulo_descricao, :texto_descricao, :hashtags, :status, :id_usuario)");
 
 			        $query->bindValue(":nome_apresentacao", $nome_apresentacao);
 			        $query->bindValue(":apresentacao", $apresentacao);
 							$query->bindValue(":horario_atendimento",$horario_atendimento);
 					    $query->bindValue(":titulo_descricao", $titulo_descricao);
 							$query->bindValue(":texto_descricao", $texto_descricao);
+							$query->bindValue(":hashtags", $hashtags);
 							$query->bindValue(":status", $status);
 							$query->bindValue(":id_usuario", $id_usuario);
 
@@ -563,7 +564,7 @@ function cadastrar($dados_usuario){
 						$sql->execute();
 						return $sql;
 					}else {
-						$sql = "SELECT * FROM habilitados";
+						$sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT 0, 4";
 						$sql = $pdo->prepare($sql);
 						$sql->execute();
 						return $sql;
@@ -603,6 +604,45 @@ function cadastrar($dados_usuario){
 							echo "Erro ao envia mensagem: ".$e->getMessage();
 							return false;
 					}
+				}
+				// parte de comentarios
+
+				function add_comentario($com,$nota,$id_u,$id_p){
+
+					$pdo = conectar();
+				    try {
+				        $query = $pdo->prepare("INSERT INTO tabela_comentario (comentario, nota, id_u, id_p) VALUES (:comentario,:nota,:id_u,:id_p)");
+									$query->bindValue(":comentario", $com);
+							    $query->bindValue(":nota", $nota);
+									$query->bindValue(":id_u", $id_u);
+					        $query->bindValue(":id_p", $id_p);
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao adicionar na fotos: ".$e->getMessage();
+			          return false;
+				    }
+				}
+
+				function buscar_comentario($id_h){
+					$pdo = conectar();
+					$sql = "SELECT * FROM tabela_comentario g INNER JOIN usuarios a ON g.id_u = a.id;";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_p",$id_h);
+					$sql->execute();
+					return $sql;
+				}
+
+				// paginação
+				function paginacao($inicio,$fim){
+					$pdo = conectar();
+					$sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+
 				}
 
  ?>
