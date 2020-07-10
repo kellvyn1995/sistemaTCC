@@ -8,19 +8,34 @@
 //  include_once "../model/modelUsuario.php"
 //  $pdo = conectar(); //coneão com banco de dados
 //  $resultado = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
-switch (get_post_action('volta','proxima','btbusca')) {
-  case '':
-
-
+switch (get_post_action('anterio','proximo','btbusca')) {
+    case 'btbusca':
+    $buscar = addslashes($_POST['buscar']);
+    $resultado = buscar($buscar);
     break;
 
-  default:
-    // code...
+    case 'proximo':
+    if (isset($_GET['pg']) && !empty($_GET['pg'])){
+     $pg = addslashes($_GET['pg']);
+     $pagina = $pg + 1;
+     $resultado = paginacao($pagina);
+    }else {
+      echo 'erro';
+    }
+    break;
+
+    // case 'anterio':
+    // $resultado = paginacao($conte);
+    // break;
+
+    default:
+    $buscar = false;
+    $resultado = buscar($buscar);
     break;
 }
 
 
-if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
+/*if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
 
     $buscar = addslashes($_POST['buscar']);
     $resultado = buscar($buscar);
@@ -29,7 +44,7 @@ if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
 }else {
   $buscar = false;
   $resultado = buscar($buscar);
-}
+}*/
 
   while ($lista = $resultado->fetch(PDO::FETCH_ASSOC)){
   $dados_imagens = buscar_imagens($lista['id_habilitado']);
@@ -38,7 +53,7 @@ if (isset($_POST['env']) && !empty($_POST['env'] == "envBusca")) {
   $ver  = $lista['status'];
   ?>
   <!--ser status for = 1 sera mostrado-->
-<?php if ($ver == 1): ?>
+<?php if ($ver == 1):?>
   <tr>
   <!--mostrando resultados da consulta-->
   <form class="" action="view/perfil.php" method="POST">

@@ -32,7 +32,7 @@
 
         <form class="form-inline my-2 my-lg-0 mr-3" method="post" action="../index.php">
             <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Digite o que procura" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" name="envioBusca" type="submit">Pesquisa</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" name="btbusca" type="submit">Pesquisa</button>
             <input type="hidden" name="env" value="envBusca">
         </form>
 

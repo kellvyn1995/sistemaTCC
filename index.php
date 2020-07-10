@@ -2,8 +2,15 @@
 include_once "model/conexao.php";
 /*data = new DateTime(); //captura a data e hora
 echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
-
 //include_once "controller/c_buscar.php";
+if (isset($_GET['pg']) && !empty($_GET['pg'])){
+ $pg = addslashes($_GET['pg']);
+  $pg = 1;
+}
+if (!isset($_GET['pg']) && !empty($_GET['pg'])){
+ $pg = addslashes($_GET['pg']);
+ $pg = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,21 +60,21 @@ echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
     </div>
 
 
+
     <div class="container">
       <div class="row">
         <div class="col-sm">
 
         </div>
         <div class="col-sm">
-          <nav aria-label="Navegação de página exemplo" >
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="index.php?pg=volta" value="anterio">Anterior</a></li>
-            <li class="page-item"><a class="page-link" href="#" value="anterio">1</a></li>
-            <li class="page-item"><a class="page-link" href="#" value="anterio">2</a></li>
-            <li class="page-item"><a class="page-link" href="#" value="anterio">3</a></li>
-            <li class="page-item"><a class="page-link" href="index.php?pg=proximo" value="anterio">Próximo</a></li>
-          </ul>
-        </nav>
+          <form class="" action="" method="get" >
+            <nav aria-label="Navegação de página exemplo" >
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="index.php?pg=<?php echo $pg?>" value="anterio">Anterior</a></li>
+              <li class="page-item"><a class="page-link" href="index.php?pg=<?php echo $pg?>" value="proximo" name="proximo">Próximo</a></li>
+            </ul>
+          </nav>
+          </form>
         </div>
         <div class="col-sm">
 

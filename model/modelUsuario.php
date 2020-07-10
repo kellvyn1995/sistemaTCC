@@ -564,7 +564,7 @@ function cadastrar($dados_usuario){
 						$sql->execute();
 						return $sql;
 					}else {
-						$sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT 0, 4";
+						$sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT 0, 3";
 						$sql = $pdo->prepare($sql);
 						$sql->execute();
 						return $sql;
@@ -636,11 +636,27 @@ function cadastrar($dados_usuario){
 				}
 
 				// paginação
-				function paginacao($inicio,$fim){
-					$pdo = conectar();
-					$sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
-					$sql = $pdo->prepare($sql);
-					$sql->execute();
+				function paginacao($pagina){
+					$limite = 15; // Limite por página
+					// Pega página atual, se houver e for válido (maior que zero!)
+					if( isset( $_GET['pg'] ) && (int)$_GET['pg'] >= 0){
+					    $pagina = (int)$_GET['pg'];
+					}else{
+					    $pagina = 0;
+					}
+
+					// Calcula o offset
+					$offset = $limite * $pagina;
+
+					// Se for 0 será 15*0 que será 0, começando do inicio
+					// Se for 1 será 15*1 que irá começar do 15 ignorando os 15 anteriores. ;)
+
+					$sql = $sql->query('SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT '.$limite.' OFFSET '.$offset);
+					// $pdo = conectar();
+					// $fim = $inicio + 3;
+					// $sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
+					// $sql = $pdo->prepare($sql);
+					// $sql->execute();
 					return $sql;
 
 				}
