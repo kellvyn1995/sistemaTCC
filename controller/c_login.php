@@ -14,19 +14,12 @@ if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) 
   // se a condição for verdadeira o usuario volta pra tela index se não volta pra tela de login
   if ($u->login($email, $senha) == true) {
 
-    //
     if (isset($_SESSION['idUser'])) {
           // verificar se o usuario e um habilitado se sim sera criado uma sessão habiltado
           $a = $_SESSION['idUser'];
           if ($u->buscar_um_habilitado($a)) {
             header("Location: ../view/meuPerfil.php");
-              /*$g = $_SESSION['id_habilitado'];
-              // verificar se o habilitado tem uma agneda
-              if ($u->buscar_agenda($g)) {
-                header("Location: ../view/agenda.php?agora=view");
-              }else {
-                header("Location: ../view/meuPerfil.php");
-              } */
+
 
           }else {
             header("Location: ../index.php?pg=index");
@@ -37,11 +30,11 @@ if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) 
 
   }else {
     // usuario e senha incoreto
-    header("Location: ../view/login.php");
+    header("Location: ../view/login.php?erro=1");
   }
 }else {
   // ser os dados não forem informados, será redirecionado para pagina de login
-  header("Location: ../view/login.php");
+  header("Location: ../view/login.php?erro=2");
 }
 
 

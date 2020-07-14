@@ -1,6 +1,6 @@
 <?php
 
-include_once "../model/conexao.php";
+include_once "../controller/c_conexao.php";
 
 ?>
 <!DOCTYPE html>
@@ -24,10 +24,6 @@ include_once "../model/conexao.php";
     <tr>
       <th scope="col">id habilitado</th>
       <th scope="col">nome apresentação</th>
-      <th scope="col">apresentação</th>
-      <th scope="col">horario</th>
-      <th scope="col">titulo</th>
-      <th scope="col">texto</th>
       <th scope="col">status</th>
       <th scope="col">ações</th>
     </tr>
@@ -50,16 +46,18 @@ while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
     <input type="hidden" name="atual_status" value="<?php echo $lista["status"]; ?>">
     <td name="id_hab"><?php echo $lista['id_habilitado']; ?></td>
     <td name="nome"><?php echo $lista["nome_apresentacao"]; ?></td>
-    <td name="email"><?php echo $lista["apresentacao"]; ?></td>
-    <td name="telefone"><?php echo $lista["horario_atendimento"]; ?></td>
-    <td name="nascimento"><?php echo $lista["titulo_descricao"]; ?></td>
-    <td name="cpf"><?php echo $lista["texto_descricao"]; ?></td>
-    <td name="status"><?php echo $lista["status"]; ?></td>
-
-
+      <td name="status">
+            <?php if ($lista["status"] == 1): ?>
+                <button class="btn btn-success btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">ABILITADO</button>
+            <?php endif; ?>
+            <?php if ($lista["status"] == 0): ?>
+                <button class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">DESABILITADO</button>
+            <?php endif; ?>
+      </td>
     <td>
       <button type="submit" class="btn btn-success">muda status</button>
       <button type="button" class="btn btn-danger">Deletar</button>
+      <button type="button" class="btn btn-danger">Verificar</button>
     </td>
   </tr>
 </form>

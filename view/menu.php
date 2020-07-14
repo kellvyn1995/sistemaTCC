@@ -6,7 +6,7 @@
         <a class="navbar-brand" href="#"> <img src="../libs/img/logo04menor.png" alt="25x25"> </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="../index.php?pg=index">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="view/ajuda.php">Ajuda</a>
@@ -53,8 +53,8 @@
                 <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/agenda.php?pg=agenda">Agenda</a>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])): ?>
-                  <a class="dropdown-item" href="../view/mensagem.php?pg=menssagem">Mensagens</a>
+                <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
+                   <a class="dropdown-item" href="../view/gerenciador_comentarios.php">Comentarios</a>
                 <?php endif; ?>
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>

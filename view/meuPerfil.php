@@ -69,7 +69,7 @@ include "../controller/c_perfil.php";
 </ul>
 <div class="card-body">
 <a type="button" class="btn btn-warning" href="/view/agenda.php">Editar Agenda</a>
-<a type="button" class="btn btn-dark" href="/view/menssagem.php">Menssagem</a>
+<!-- <a type="button" class="btn btn-dark" href="/view/menssagem.php">Menssagem</a> -->
 </div>
 </div>
 

@@ -14,6 +14,12 @@ $confirmarSenha = addslashes (md5($_POST['confirmarSenha']));
 $dados_usuario->setNascimento($_POST['nascimento']);
 $dados_usuario->setCpf($_POST['cpf']);
 
+$_SESSION['tnome'] = $dados_usuario->getNome() ;
+$_SESSION['tsobrenome'] = $dados_usuario->getSobreNome();
+$_SESSION['temail'] = $dados_usuario->getEmail();
+$_SESSION['ttelefone'] = $dados_usuario->getTelefone();
+$_SESSION['tcpf'] = $dados_usuario->getCpf();
+
 // se todos os campos forem diferente de vazio entra na condição
 if (!empty($dados_usuario->getNome()) && !empty($dados_usuario->getSobreNome()) && !empty($dados_usuario->getEmail()) && !empty($dados_usuario->getTelefone()) && !empty($dados_usuario->getSenha()) && !empty($dados_usuario->getNascimento()) && !empty($dados_usuario->getCpf())) {
   //validar cpf
@@ -24,11 +30,11 @@ if (!empty($dados_usuario->getNome()) && !empty($dados_usuario->getSobreNome()) 
         if (verificarEmail($dados_usuario) == false) {
           //verificar senha
           if ($confirmarSenha == $dados_usuario->getSenha() ) {
-            include_once "../model/modelUsuario.php";
-            $status = cadastrar($dados_usuario);
-                if ($status) {
-                  header("Location: ../view/aviso.php?aviso=2");
-                }
+                include_once "../model/modelUsuario.php";
+                $status = cadastrar($dados_usuario);
+                    if ($status) {
+                      header("Location: ../view/aviso.php?aviso=2");
+                    }
           }else {
             header("Location: ../view/cadastroUsuario.php?pg=2");
           }

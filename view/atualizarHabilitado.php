@@ -130,7 +130,125 @@ include_once "../controller/c_verifica_h.php";
 
     </form>
 </div>
+<!-- redes sociais -->
+<div class="container p-3 my-3 bg-dark text-white">
+  <h5>LINK das suas redes sociais</h5>
+  <form class="" action="../controller/c_update_habilitado.php" method="post">
+    <?php if (!empty($dados_redes['youtube'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">YouTube</span>
+        </div>
+        <input type="text" name="youtube" value="<?php  echo $dados_redes['youtube']?>" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['youtube'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">YouTube</span>
+        </div>
+        <input type="text" name="youtube" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
 
+    <?php if (!empty($dados_redes['twitter'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Twitter</span>
+          </div>
+          <input type="text" name="twitter" value="<?php  echo $dados_redes['twitter']?>" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['twitter'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Twitter</span>
+        </div>
+        <input type="text" name="twitter" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($dados_redes['linkedin'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">LinkedIn</span>
+        </div>
+        <input type="text" name="linkedin" value="<?php  echo $dados_redes['linkedin']?>" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['linkedin'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">LinkedIn</span>
+        </div>
+        <input type="text" name="linkedin" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($dados_redes['instagram'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Instagram</span>
+        </div>
+        <input type="text" name="instagram" value="<?php  echo $dados_redes['instagram']?>" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['instagram'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Instagram</span>
+        </div>
+        <input type="text" name="instagram" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($dados_redes['facebook'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Facebook</span>
+        </div>
+        <input type="text" name="youtube" value="<?php  echo $dados_redes['facebook']?>" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['facebook'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Facebook</span>
+        </div>
+        <input type="text" name="facebook" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+
+    <?php if (!empty($dados_redes['github'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">GitHub</span>
+        </div>
+        <input type="text" name="github" value="<?php  echo $dados_redes['github']?>" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['github'])): ?>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">GitHub</span>
+        </div>
+        <input type="text" name="github" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    <?php endif; ?>
+
+    <div class="form-group w-100"></div>
+    <!-- condição do botão -->
+    <?php if ($dados_redes['id_hab'] == $_SESSION['id_habilitado']): ?>
+      <input type="hidden" name="id_rede" value="<?php  echo $dados_redes['id_rede']?>">
+      <button type="submit" name="atualiza_redes" class="btn btn-success">Atualiza</button>
+    <?php endif; ?>
+    <?php if (empty($dados_redes['id_hab'])): ?>
+      <button type="submit" name="add_redes" class="btn btn-success">Salva</button>
+    <?php endif; ?>
+
+  </form>
+</div>
 
 <!--  MODAL -->
 <form class="" action="../controller/c_update_habilitado.php" method="POST" enctype="multipart/form-data">

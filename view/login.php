@@ -20,6 +20,25 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
               <div id="login-row" class="row justify-content-center align-items-center">
                   <div id="login-column" class="col-md-6">
                       <div id="login-box" class="col-md-12">
+                        <!-- verificação de erro -->
+                        <?php if (isset($_GET['erro']) && !empty($_GET['erro'])): $erro = addslashes($_GET['erro']);  ?>
+                          <div class="alert alert-danger" role="alert">
+                            <?php
+                            // verificação de ERRo
+                            switch ($erro) {
+                              case '1':
+                                echo "Email ou senha esta incorreto! ";
+                                $pg = 0;
+                              break;
+                              case '2':
+                                  echo "Preencha todos os campos coretamente!";
+                                  $pg = 0;
+                              break;
+
+                            }
+                             ?>
+                          </div>
+                        <?php endif; ?>
                           <form id="login-form" class="form" action="/controller/c_login.php" method="POST">
                             <img class="rounded mx-auto d-block" src="../libs/img/logo01menor.png">
                               <h3 class="text-center text-dark">Entre na sua conta</h3>

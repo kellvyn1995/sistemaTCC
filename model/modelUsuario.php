@@ -552,6 +552,71 @@ function cadastrar($dados_usuario){
 						}
 
 				}
+				// redes sociais
+
+				function add_sociais($youtube,$twitter,$linkedin,$instagram,$facebook,$github){
+
+					$pdo = conectar();
+					$id_hab = $_SESSION['id_habilitado'];
+				    try {
+				        $query = $pdo->prepare("INSERT INTO rede_sociais (youtube, twitter, linkedin, instagram, facebook, github, id_hab) VALUES (:youtube, :twitter, :linkedin, :instagram, :facebook, :github, :id_hab)");
+					        $query->bindValue(":youtube",$youtube);
+					        $query->bindValue(":twitter",$twitter);
+									$query->bindValue(":linkedin",$linkedin);
+									$query->bindValue(":instagram",$instagram);
+					        $query->bindValue(":facebook",$facebook);
+									$query->bindValue(":github",$github);
+									$query->bindValue(":id_hab", $id_hab);
+
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao adicionar na tabela redes sociais: ".$e->getMessage();
+			          return false;
+				    }
+				}
+				// atualizar redes sociais
+				function atualiza_sociais($youtube,$twitter,$linkedin,$instagram,$facebook,$github,$idrede){
+
+					$pdo = conectar();
+
+				    try {
+				        $query = $pdo->prepare("UPDATE rede_sociais SET youtube = :youtube, twitter = :twitter, linkedin = :linkedin, instagram = :instagram, facebook = :facebook, github = :github WHERE id_rede = :id_rede");
+					        $query->bindValue(":youtube",$youtube);
+					        $query->bindValue(":twitter",$twitter);
+									$query->bindValue(":linkedin",$linkedin);
+									$query->bindValue(":instagram",$instagram);
+					        $query->bindValue(":facebook",$facebook);
+									$query->bindValue(":github",$github);
+									$query->bindValue(":id_rede", $idrede);
+
+					        $query->execute();
+
+			            return true;
+
+				    } catch (PDOException $e) {
+				        echo "Erro ao Atualiza a tabela redes sociais: ".$e->getMessage();
+			          return false;
+				    }
+				}
+				// controle de acesso busca informações
+				// utiliza o id do habilitado pra fazer a busca na tabela rede_sociais
+				function buscar_redes($id_h){
+					$pdo = conectar();
+					$array = array();
+					$sql = "SELECT * FROM rede_sociais WHERE id_hab = :id_hab";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_hab",$id_h);
+					$sql->execute();
+					if ($sql->rowCount() > 0) {
+						$array = $sql->fetch();
+						return $array;
+					}else {
+						return false;
+					}
+				}
 
 				// sistema de buscar
 				// controle de acesso busca informações
@@ -564,7 +629,7 @@ function cadastrar($dados_usuario){
 						$sql->execute();
 						return $sql;
 					}else {
-						$sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT 0, 3";
+						$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT 0, 3";
 						$sql = $pdo->prepare($sql);
 						$sql->execute();
 						return $sql;
@@ -626,6 +691,18 @@ function cadastrar($dados_usuario){
 				    }
 				}
 
+				// limita o resultados dos comentarios em 5
+				function buscar_comentario_5($id_h){
+					$inicio = 5;
+					$fim = 1;
+					$pdo = conectar();
+					$sql = "SELECT * FROM tabela_comentario g INNER JOIN usuarios a ON g.id_u = a.id ORDER BY 	id_comentario DESC LIMIT 5;";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_p",$id_h);
+					$sql->execute();
+					return $sql;
+				}
+
 				function buscar_comentario($id_h){
 					$pdo = conectar();
 					$sql = "SELECT * FROM tabela_comentario g INNER JOIN usuarios a ON g.id_u = a.id;";
@@ -634,31 +711,33 @@ function cadastrar($dados_usuario){
 					$sql->execute();
 					return $sql;
 				}
+				function buscar_nota_comentario($id_h){
+					$pdo = conectar();
+					$sql = "SELECT * FROM tabela_comentario WHERE nota and id_p = :id_p";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_p",$id_h);
+					$sql->execute();
+					return $sql;
+				}
 
 				// paginação
-				function paginacao($pagina){
-					$limite = 15; // Limite por página
-					// Pega página atual, se houver e for válido (maior que zero!)
-					if( isset( $_GET['pg'] ) && (int)$_GET['pg'] >= 0){
-					    $pagina = (int)$_GET['pg'];
-					}else{
-					    $pagina = 0;
-					}
-
-					// Calcula o offset
-					$offset = $limite * $pagina;
-
-					// Se for 0 será 15*0 que será 0, começando do inicio
-					// Se for 1 será 15*1 que irá começar do 15 ignorando os 15 anteriores. ;)
-
-					$sql = $sql->query('SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT '.$limite.' OFFSET '.$offset);
-					// $pdo = conectar();
-					// $fim = $inicio + 3;
-					// $sql = "SELECT * FROM habilitados ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
-					// $sql = $pdo->prepare($sql);
-					// $sql->execute();
+				function paginacao_proximo($pg){
+					$inicio = $pg + 3;
+					$fim = $inicio + 2;
+					$pdo = conectar();
+					$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
 					return $sql;
-
+				}
+				function  paginacao_anterio($pg){
+					$inicio = $pg;
+					$fim = $inicio+3;
+					$pdo = conectar();
+					$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
 				}
 
  ?>

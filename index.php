@@ -4,12 +4,10 @@ include_once "model/conexao.php";
 echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
 //include_once "controller/c_buscar.php";
 if (isset($_GET['pg']) && !empty($_GET['pg'])){
- $pg = addslashes($_GET['pg']);
-  $pg = 1;
-}
-if (!isset($_GET['pg']) && !empty($_GET['pg'])){
- $pg = addslashes($_GET['pg']);
- $pg = 1;
+  // esse if era verificar dr tenm uma pagina atual, caso não tenha a pagina sera 0.
+$pg = addslashes($_GET['pg']);
+}else {
+  $pg = 0;
 }
 ?>
 <!DOCTYPE html>
@@ -33,29 +31,30 @@ if (!isset($_GET['pg']) && !empty($_GET['pg'])){
     <div class="container-fluid">
 
       <?php
-      $pg = "";
-       if (isset($_GET['pg']) && !empty($_GET['pg'])){
-        $pg = addslashes($_GET['pg']);
-      }
-
-      switch ($pg) {
-        case '':
-          include_once "controller/c_cads.php";
-          break;
-
-          case 'index':
-            include_once "controller/c_cads.php";
-            break;
-
-        case 'perfil':
-          include_once "view/perfil.php";
-          break;
-        case 'adastrohabilitado':
-            include_once "view/adastrohabilitado.php";
-        break;
-
-
-      }
+      include_once "controller/c_cads.php";
+      // $pg = "";
+      //  if (isset($_GET['pg']) && !empty($_GET['pg'])){
+      //   $pg = addslashes($_GET['pg']);
+      // }
+      //
+      // switch ($pg) {
+      //   case '':
+      //     include_once "controller/c_cads.php";
+      //     break;
+      //
+      //     case 'index':
+      //       include_once "controller/c_cads.php";
+      //       break;
+      //
+      //   case 'perfil':
+      //     include_once "view/perfil.php";
+      //     break;
+      //   case 'adastrohabilitado':
+      //       include_once "view/adastrohabilitado.php";
+      //   break;
+      //
+      //
+      // }
       ?>
     </div>
 
@@ -67,11 +66,11 @@ if (!isset($_GET['pg']) && !empty($_GET['pg'])){
 
         </div>
         <div class="col-sm">
-          <form class="" action="" method="get" >
+          <form class="" method="post" action="index.php">
             <nav aria-label="Navegação de página exemplo" >
             <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="index.php?pg=<?php echo $pg?>" value="anterio">Anterior</a></li>
-              <li class="page-item"><a class="page-link" href="index.php?pg=<?php echo $pg?>" value="proximo" name="proximo">Próximo</a></li>
+              <button class="page-link" href="" value="anterio"  name="anterio" type="submit">Anterior</button>
+              <button class="page-link" href="" value="proximo" name="proximo" type="submit">Próximo</button>
             </ul>
           </nav>
           </form>
@@ -83,10 +82,10 @@ if (!isset($_GET['pg']) && !empty($_GET['pg'])){
     </div>
 
 
-    <?php include "view/rodape.php"; ?>
+
   </main>
 
-
+<?php include "view/rodape.php"; ?>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

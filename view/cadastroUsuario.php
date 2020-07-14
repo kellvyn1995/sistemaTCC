@@ -5,7 +5,6 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
     header("Location: ../index.php");
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -55,42 +54,74 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
       <div class="row">
         <div class="form-group col-md-6">
           <label for="">Nome</label>
-        <input type="text" name="nome" class="form-control" placeholder="Nome" maxlength="50">
+          <?php if (isset($_SESSION['tnome']) && !empty($_SESSION['tnome'])): ?>
+            <input type="text" name="nome" class="form-control" placeholder="Nome" value="<?php echo $_SESSION['tnome']?>" maxlength="50">
+          <?php endif; ?>
+          <?php if (empty($_SESSION['tnome'])): ?>
+            <input type="text" name="nome" class="form-control" placeholder="Nome" maxlength="50">
+          <?php endif; ?>
+
         </div>
         <div class="form-group col-md-6">
           <label for="">Sobrenome</label>
-        <input type="text" name="sobreNome" class="form-control" placeholder="Sobrenome" maxlength="50">
+          <?php if (isset($_SESSION['tsobrenome']) && !empty($_SESSION['tsobrenome'])): ?>
+            <input type="text" name="sobreNome" class="form-control" placeholder="Sobrenome" value="<?php echo $_SESSION['tsobrenome']?>" maxlength="50">
+          <?php endif; ?>
+          <?php if (empty($_SESSION['tsobrenome'])): ?>
+            <input type="text" name="sobreNome" class="form-control" placeholder="Sobrenome" maxlength="50">
+          <?php endif; ?>
+
         </div>
 
         <!--linha 2-->
       <div class="w-100"></div>
         <div class="form-group col-md-6">
           <label for="">E-mail</label>
-        <input type="text" name="email" class="form-control" placeholder="E-mail" maxlength="100">
+          <?php if (isset($_SESSION['temail']) && !empty($_SESSION['temail'])): ?>
+            <input type="email" name="email" class="form-control" placeholder="E-mail" value="<?php echo $_SESSION['temail']?>" maxlength="100">
+          <?php endif; ?>
+          <?php if (empty($_SESSION['temail'])): ?>
+            <input type="email" name="email" class="form-control" placeholder="E-mail" maxlength="100">
+          <?php endif; ?>
         </div>
         <div class="form-group col-md-6">
           <label for="">Telefone</label>
-        <input type="text" data-mask="(00) 00000-0000" name="telefone" class="form-control" placeholder="Telefone" maxlength="16">
+          <?php if (isset($_SESSION['ttelefone']) && !empty($_SESSION['ttelefone'])): ?>
+            <input type="text" data-mask="(00) 00000-0000" name="telefone" class="form-control" value="<?php echo $_SESSION['ttelefone']?>"placeholder="Telefone" maxlength="16">
+          <?php endif; ?>
+          <?php if (empty($_SESSION['ttelefone'])): ?>
+            <input type="text" data-mask="(00) 00000-0000" name="telefone" class="form-control" placeholder="Telefone" maxlength="16">
+          <?php endif; ?>
         </div>
         <!--linha 3-->
         <div class=" w-100"></div>
           <div class="form-group col-md-6">
             <label for="">Senha</label>
-          <input type="password" name="senha" class="form-control" placeholder="Senha" maxlength="16">
+          <input type="password" name="senha" class="form-control" placeholder="Senha" minlength="8" maxlength="16">
           </div>
           <div class="form-group col-md-6">
             <label for="">Confirmar senha</label>
-          <input type="password" name="confirmarSenha" class="form-control" placeholder="Confirmar senha" maxlength="16">
+          <input type="password" name="confirmarSenha" class="form-control" placeholder="Confirmar senha" minlength="8" maxlength="16">
           </div>
           <!--linha 4-->
         <div class="w-100"></div>
           <div class="form-group col-md-6">
             <label for="">Data de nacimento</label>
-          <input type="text"  data-mask="00/00/0000" name="nascimento" class="form-control" placeholder="Nascimento" maxlength="10">
+            <?php if (isset($_SESSION['tnascimento']) && !empty($_SESSION['tnascimento'])): ?>
+              <input type="text"  data-mask="00/00/0000" name="nascimento" class="form-control" value="<?php echo $_SESSION['tnascimento']?>" placeholder="Nascimento" maxlength="10">
+            <?php endif; ?>
+            <?php if (empty($_SESSION['tnascimento'])): ?>
+              <input type="text"  data-mask="00/00/0000" name="nascimento" class="form-control" placeholder="Nascimento" maxlength="10">
+            <?php endif; ?>
           </div>
           <div class="form-group col-md-6">
             <label for="">CPF</label>
-          <input type="text" data-mask="000.000.000-00" name="cpf" class="form-control"  placeholder="CPF" maxlength="12">
+            <?php if (isset($_SESSION['tcpf']) && !empty($_SESSION['tcpf'])): ?>
+              <input type="text" data-mask="000.000.000-00" name="cpf" class="form-control" value="<?php echo $_SESSION['tcpf']?>" placeholder="CPF" maxlength="12">
+            <?php endif; ?>
+            <?php if (empty($_SESSION['tcpf'])): ?>
+              <input type="text" data-mask="000.000.000-00" name="cpf" class="form-control"  placeholder="CPF" maxlength="12">
+            <?php endif; ?>
           </div>
           <div class="form-group w-100"></div>
           <button type="submit" value="cadastrar" class="btn btn-success">Cadastrar</button>

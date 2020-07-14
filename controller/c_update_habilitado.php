@@ -5,7 +5,7 @@ include_once "c_consulta.php";
     /*
     o switch vai chama uma função que vai verifica o name do botão clicado
     */
-     switch (get_post_action('atualiza', 'add_img', 'delete','add_links','delete_link')) {
+     switch (get_post_action('atualiza', 'add_img', 'delete','add_links','delete_link','add_redes','atualiza_redes')) {
         case 'atualiza':
 
         $nome_apresentacao = addslashes($_POST['nome_apresentacao']);
@@ -74,7 +74,7 @@ include_once "c_consulta.php";
                 $link1 = html_entity_decode($_POST['link1']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
                 $link2 = html_entity_decode($_POST['link2']); // html_entity_decode — Converte todas as entidades HTML para os seus caracteres
                 $link3 = html_entity_decode($_POST['link3']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
-                  $link_info = add_links($link1,$link2,$link3);
+                $link_info = add_links($link1,$link2,$link3);
                   if ($link_info) {
                     header("Location: ../view/meuPerfil.php");
                   }
@@ -89,6 +89,31 @@ include_once "c_consulta.php";
                           echo "não deu certo";
                         }
                       break;
+        case 'add_redes':
+            $rede1 = html_entity_decode($_POST['youtube']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+            $rede2 = html_entity_decode($_POST['twitter']); // html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+            $rede3 = html_entity_decode($_POST['linkedin']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+            $rede4 = html_entity_decode($_POST['instagram']); // html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+            $rede5 = html_entity_decode($_POST['facebook']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+            $rede6 = html_entity_decode($_POST['github']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+            $rede_info = add_sociais($rede1,$rede2,$rede3,$rede4,$rede5,$rede6);
+              if ($rede_info) {
+                header("Location: ../view/meuPerfil.php");
+              }
+          break;
+          case 'atualiza_redes':
+          $rede1 = html_entity_decode($_POST['youtube']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+          $rede2 = html_entity_decode($_POST['twitter']); // html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+          $rede3 = html_entity_decode($_POST['linkedin']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+          $rede4 = html_entity_decode($_POST['instagram']); // html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+          $rede5 = html_entity_decode($_POST['facebook']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+          $rede6 = html_entity_decode($_POST['github']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
+          $idreferencia = ($_POST['id_rede']);
+          $rede_at = atualiza_sociais($rede1,$rede2,$rede3,$rede4,$rede5,$rede6,$idreferencia);
+            if ($rede_at) {
+              header("Location: ../view/meuPerfil.php");
+            }
+            break;
 
         default:
             //no action sent

@@ -15,18 +15,15 @@ switch (get_post_action('anterio','proximo','btbusca')) {
     break;
 
     case 'proximo':
-    if (isset($_GET['pg']) && !empty($_GET['pg'])){
-     $pg = addslashes($_GET['pg']);
-     $pagina = $pg + 1;
-     $resultado = paginacao($pagina);
-    }else {
-      echo 'erro';
-    }
+       $resultado = paginacao_proximo($pg); // passando o numero da pagina atual
+       $pg = $pg+1;
     break;
 
-    // case 'anterio':
-    // $resultado = paginacao($conte);
-    // break;
+    case 'anterio':
+    $pg = $pg--; // decremetando a pagina atual
+    $resultado = paginacao_anterio($pg);// passando o numero da pagina atual
+
+    break;
 
     default:
     $buscar = false;
@@ -51,6 +48,7 @@ switch (get_post_action('anterio','proximo','btbusca')) {
   $id_m = $lista['id_usuario'];
   $id_h = $lista['id_habilitado'];
   $ver  = $lista['status'];
+
   ?>
   <!--ser status for = 1 sera mostrado-->
 <?php if ($ver == 1):?>
