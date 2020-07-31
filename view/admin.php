@@ -1,6 +1,5 @@
 <?php
-
-include_once "../controller/c_conexao.php";
+include_once "../controller/c_admin.php";
 
 ?>
 <!DOCTYPE html>
@@ -13,51 +12,82 @@ include_once "../controller/c_conexao.php";
 <body>
 <?php include "../view/menu.php"; ?>
 
+<?php
+include_once "../controller/c_status.php";
 
+ ?>
 <!--habilitados-->
     </tbody>
   </table>
 
 
   <table class="table table-striped table-dark">
-  <thead>
-    <tr>
-      <th scope="col">id habilitado</th>
-      <th scope="col">nome apresentação</th>
-      <th scope="col">status</th>
-      <th scope="col">ações</th>
-    </tr>
-  </thead>
+    <form class="" action="" method="post">
+      <thead>
+        <tr>
+          <th scope="col">id habilitado</th>
+          <th scope="col">nome apresentação</th>
+          <th scope="col">status</th>
+          <th scope="col">ações
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Ação
+              </button>
+              <div class="dropdown-menu">
+                <button type="submit" class="btn btn-light btn-sm dropdown-item" name="ativos">ativos</button>
+                <button type="submit" class="btn btn-light btn-sm dropdown-item" name="inativos">Inativos</button>
+                <button type="submit" class="btn btn-light btn-sm dropdown-item" name="todos">Todos</button>
+              </div>
+            </div>
+
+          </th>
+
+        </tr>
+      </thead>
+    </form>
+
   <tbody>
 
     <?php
-    $pdo = conectar(); //coneão com banco de dados
-$consulta = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
-
+// $pdo = conectar(); //coneão com banco de dados
+// $consulta = $pdo->query("SELECT * FROM habilitados;"); // realizando a consulta
+// usar duas switch
 
 while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
   $id = $lista['id_habilitado'];
+  $id_h = $lista['id_habilitado'];
+  $id_m = $lista['id_usuario'];
   ?>
-<form class="" action="../controller/c_status.php" method="POST">
+<form class="" action="" method="POST">
 
   <tr>
     <!--mostrando resultados da consulta, type="hidden" é um input invisivel -->
     <input type="hidden" name="id_habilitado" value="<?php echo $lista['id_habilitado']; ?>">
     <input type="hidden" name="atual_status" value="<?php echo $lista["status"]; ?>">
+    <input type="hidden" name="id_h" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
+    <input type="hidden" name="id_m" value="<?php echo $id_m;?>" /> <!-- input invisivel-->
     <td name="id_hab"><?php echo $lista['id_habilitado']; ?></td>
     <td name="nome"><?php echo $lista["nome_apresentacao"]; ?></td>
       <td name="status">
             <?php if ($lista["status"] == 1): ?>
-                <button class="btn btn-success btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">ABILITADO</button>
+                <button class="btn btn-success btn-lg disabled" name="status" tabindex="-1" role="button" aria-disabled="true">HABILITADO</button>
             <?php endif; ?>
             <?php if ($lista["status"] == 0): ?>
-                <button class="btn btn-danger btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">DESABILITADO</button>
+                <button class="btn btn-danger btn-lg disabled" name="status" tabindex="-1" role="button" aria-disabled="true">DESABILITADO</button>
             <?php endif; ?>
+
       </td>
     <td>
-      <button type="submit" class="btn btn-success">muda status</button>
-      <button type="button" class="btn btn-danger">Deletar</button>
-      <button type="button" class="btn btn-danger">Verificar</button>
+      <button type="submit" name="status" class="btn btn-success">muda status</button>
+      <!-- <button type="button" class="btn btn-danger">Deletar</button> -->
+      <?php if ($lista["status"] == 1): ?>
+          <a type="button" name="verificar" target="_blank" class="btn btn-success" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
+      <?php endif; ?>
+      <?php if ($lista["status"] == 0): ?>
+          <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
+      <?php endif; ?>
+      
+      <!-- <button type="button" name="verificar" target="_blank" class="btn btn-danger">Verificar</button> -->
     </td>
   </tr>
 </form>

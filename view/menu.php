@@ -59,10 +59,13 @@
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>
                 <?php endif; ?>
-                <?php if ($_SESSION['idUser'] == 1): ?>
-                  <a class="dropdown-item" href="../view/admin.php">Admin</a>
-                <?php endif; ?>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
+                <?php if (isset($_SESSION['id_admin']) && !empty($_SESSION['id_admin'])): ?>
+                  <form class="" action="../view/admin.php" method="post">
+                    <button type="submit" class="btn btn-light dropdown-item" name="todos">Admin</button>
+                  </form>
+                  <!-- <button type="button" class="btn btn-light" name="todos"><a class="dropdown-item" href="../view/admin.php">Admin</a></button> -->
+                <?php endif; ?>
                 <a class="dropdown-item" href="../controller/logout.php">Sair</a>
               </div>
             </div>

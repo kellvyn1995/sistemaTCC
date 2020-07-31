@@ -48,22 +48,22 @@ switch (get_post_action('anterio','proximo','btbusca')) {
   $id_m = $lista['id_usuario'];
   $id_h = $lista['id_habilitado'];
   $ver  = $lista['status'];
-
   ?>
   <!--ser status for = 1 sera mostrado-->
 <?php if ($ver == 1):?>
   <tr>
   <!--mostrando resultados da consulta-->
-  <form class="" action="view/perfil.php" method="POST">
+  <form class="" action="view/perfil.php" method="GET">
     <input type="hidden" name="id_m" value="<?php echo $id_m;?>" /> <!-- input invisivel-->
     <input type="hidden" name="id_h" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
+    <input type="hidden" name="ajuste" value="1" /> <!-- input invisivel-->
     <div class="form-group col-sm">
       <div class="card " style="width: 18rem;">
         <img class="card-img-top" src="<?php echo $dados_imagens['img_perfil']?>" alt="Imagem de capa do card">
         <div class="card-body">
           <h5 class="card-title text-dark"><?php echo $lista["nome_apresentacao"];?></h5>
           <p class="card-text text-dark"><?php echo $lista["apresentacao"];?></p>
-              <input type="submit" name="submit" class="btn btn-primary" value="Visitar">
+              <input type="submit" name="visitar" class="btn btn-primary" value="Visitar">
         </div>
       </div>
     </div>

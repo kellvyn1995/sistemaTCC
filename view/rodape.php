@@ -33,6 +33,7 @@
       <div class="col-12 col-sm-12 col-md-3">
         <label for="">INFORMAÇÕES DE CONTATO</label> <br>
         <label for="">(88)98130-6970</label> <br>
+        <label for="">contato@inventiva.top</label> <br>
       </div>
       <!-- <div class="col col-md-3"></div> -->
     </div>

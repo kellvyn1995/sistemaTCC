@@ -18,9 +18,12 @@ if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) 
           // verificar se o usuario e um habilitado se sim sera criado uma sessão habiltado
           $a = $_SESSION['idUser'];
           if ($u->buscar_um_habilitado($a)) {
-            header("Location: ../view/meuPerfil.php");
-
-
+            // verificar se é um admin
+             if ($u->buscar_um_admin($a)) {
+                header("Location: ../view/admin.php");
+              }else {
+                  header("Location: ../view/meuPerfil.php");
+              }
           }else {
             header("Location: ../index.php?pg=index");
           }

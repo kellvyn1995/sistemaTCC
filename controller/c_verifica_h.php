@@ -1,8 +1,12 @@
 <?php
 include_once "../model/conexao.php";
-
+include_once "../model/modelUsuario.php";
 if(isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])){
-
+    $id_h_f = $_SESSION['id_habilitado'];
+    $dados_imagens = buscar_imagens($id_h_f);
+    if ($dados_imagens == false) {
+    verificar_imagem($id_h_f);
+  }
 }else {
   header("Location: ../index.php");
 }

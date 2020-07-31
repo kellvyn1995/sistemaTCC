@@ -69,7 +69,7 @@ include_once "../controller/c_verifica_h.php";
       <div class="col">slide 3 <img src="<?php echo $dados_imagens['img_slide3']?>" height="200" width="300" class="rounded mx-auto d-block"></div>
       <div class="col">Foto descrição <img src="<?php echo $dados_imagens['img_descricao']?>" height="200" width="300" class="rounded mx-auto d-block"></div>
     </div>
-    <div class="col"><button type="button" class="btn btn-light rounded mx-auto d-block my-5" data-toggle="modal" data-target="#siteModal2" >TROCA FOTOS</button></div>
+    <div class="col"><button type="button" class="btn btn-light rounded mx-auto d-block my-5" data-toggle="modal" data-target="#siteModal1" >TROCA FOTOS</button></div>
   <?php endif; ?>
   <?php if ($dados_imagens == false): ?>
     <h5>você não possui fotos!</h5>

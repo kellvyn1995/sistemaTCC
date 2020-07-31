@@ -14,6 +14,7 @@
   $dados_imagens = buscar_imagens($lista['id_habilitado']);
   $id_h = $lista['id_habilitado'];
   $ver  = $lista['status'];
+
   ?>
   <!--ser status for = 1 sera mostrado-->
 <?php if ($ver == 1): ?>

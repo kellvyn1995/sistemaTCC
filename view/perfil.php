@@ -1,12 +1,24 @@
 <?php
 include_once "../controller/c_conexao.php";
-$id_habilitado = addslashes($_POST['id_h']);
-$id_h = addslashes($_POST['id_h']);
-$id_m = addslashes($_POST['id_m']);
+
+// $id_habilitado = addslashes($_POST['id_h']);
+// $id_h = addslashes($_POST['id_h']);
+// $id_m = addslashes($_POST['id_m']);
+// if (isset($_POST['var'])) {
+//   include_once "../controller/c_comentario.php";
+// }
+$id_habilitado = addslashes($_GET['id_h']);
+$id_h = addslashes($_GET['id_h']);
+$id_m = addslashes($_GET['id_m']);
 if (isset($_POST['var'])) {
   include_once "../controller/c_comentario.php";
 }
-
+// if (isset($_POST['id_h']) && !empty($_POST['id_h'])) {
+//   $id_habilitado = addslashes($_POST['id_h']);
+//   $id_h = addslashes($_POST['id_h']);
+//   //$id_m = addslashes($_GET['id_m']);
+// }else {
+// }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -88,24 +100,24 @@ if (isset($_POST['var'])) {
 </ul>
 <!-- rede_sociais -->
 <div class="card-body row">
-    <a type="button" class="btn btn-outline-dark" href="<?php echo html_entity_decode($dados_redes['youtube']);?>">
+    <a type="button" class="btn btn-outline-dark" target="_blank" href="<?php echo html_entity_decode($dados_redes['youtube']);?>">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
     </a>
 
     <br>
-    <a type="button" class="btn btn-outline-dark" href="<?php echo html_entity_decode($dados_redes['twitter']);?>">
+    <a type="button" class="btn btn-outline-dark" target="_blank" href="<?php echo html_entity_decode($dados_redes['twitter']);?>">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
     </a>
-    <a type="button" class="btn btn-outline-dark" href="<?php echo html_entity_decode($dados_redes['linkedin']);?>">
+    <a type="button" class="btn btn-outline-dark" target="_blank" href="<?php echo html_entity_decode($dados_redes['linkedin']);?>">
         <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
     </a>
-    <a type="button" class="btn btn-outline-dark" href="<?php echo html_entity_decode($dados_redes['instagram']);?>">
+    <a type="button" class="btn btn-outline-dark" target="_blank" href="<?php echo html_entity_decode($dados_redes['instagram']);?>">
         <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
     </a>
-    <a type="button" class="btn btn-outline-dark" href="<?php echo html_entity_decode($dados_redes['facebook']);?>">
+    <a type="button" class="btn btn-outline-dark"  target="_blank" href="<?php echo html_entity_decode($dados_redes['facebook']);?>">
         <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
     </a>
-    <a type="button" class="btn btn-outline-dark" href="<?php echo html_entity_decode($dados_redes['github']);?>">
+    <a type="button" class="btn btn-outline-dark" target="_blank" href="<?php echo html_entity_decode($dados_redes['github']);?>">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
     </a>
 </div>
@@ -311,7 +323,7 @@ if (isset($_POST['var'])) {
 
   <?php
   if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser']) && $_SESSION['idUser'] != $id_m){?>
-<form class="row container centered row p-3 my-3 bg-dark text-white comentario" action="" method="post" name="novoCOM">
+<form class="row container centered row p-3 my-3 bg-dark text-white comentario" action="../controller/c_comentario.php" method="post" name="novoCOM">
   <input type="hidden" name="id_h" value="<?php echo $id_h;?>" />
   <div class="row container centered row p-3 my-3 bg-dark text-white comentario">
     <div class="col-10">
@@ -353,7 +365,7 @@ if (isset($_POST['var'])) {
           <input type="radio" id="cm_star-4" name="fb" value="4"/>
           <label for="cm_star-5"><i class="fa"></i></label>
           <input type="radio" id="cm_star-5" name="fb" value="5"/>
-          <button type="submit" class="btn btn-primary mb-2" >Envia</button>
+          <button type="submit" name="addcomentario"class="btn btn-primary mb-2" >Envia</button>
         </div>
         </div>
       </div>

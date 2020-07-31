@@ -63,6 +63,27 @@ class Logar{
 				}
 			}
 
+			// realizara a busca de admin
+			public function buscar_um_admin($id){
+				$pdo = conectar();
+
+				// sql fara uma consulta ao banco de dados, para busca o admin
+				$sql = "SELECT * FROM admin WHERE id_u_admin = :id_usuario";
+				$sql = $pdo->prepare($sql);
+				$sql->bindValue(":id_usuario",$id);
+				$sql->execute();
+
+				// verificar quantos registro tem com essa informação
+				// se encontrado uma registro sera criado uma sessão
+				if ($sql->rowCount() > 0) {
+					$dado = $sql->fetch();
+					$_SESSION['id_admin'] = $dado['id_admin'];
+					return true;
+				}else {
+					return false;
+					}
+				}
+
 			// controle de acesso busca informações
 			public function buscar_dados_habilitado($id){
 				$pdo = conectar();
@@ -420,27 +441,113 @@ function cadastrar($dados_usuario){
 				}
 				// funções para usar na imagens
 				// para cadastrar as imgens na tabela imagens
-				function add_fotos($img_perfil,$img_slide1,$img_slide2,$img_slide3,$img_descricao){
-
-					$pdo = conectar();
+				function verificar_imagem($id_habil){
+				  $pdo = conectar();
 					$id_habil = $_SESSION['id_habilitado'];
+				  $vertabela = $pdo->prepare("SELECT * FROM imagens WHERE $id_habil");
+				  if ($vertabela == false) {
 
-				    try {
-				        $query = $pdo->prepare("INSERT INTO imagens (img_perfil, img_slide1, img_slide2, img_slide3, img_descricao, id_habil) VALUES (:img_perfil,:img_slide1,:img_slide2,:img_slide3,:img_descricao,:id_habil)");
-					        $query->bindValue(":img_perfil", $img_perfil);
-					        $query->bindValue(":img_slide1", $img_slide1);
-									$query->bindValue(":img_slide2", $img_slide2);
-							    $query->bindValue(":img_slide3", $img_slide3);
-									$query->bindValue(":img_descricao", $img_descricao);
-									$query->bindValue(":id_habil", $id_habil);
-					        $query->execute();
+				  }else {
+				    $criartabela = $pdo->prepare("INSERT INTO imagens (img_perfil, img_slide1, img_slide2, img_slide3, img_descricao, id_habil) VALUES ('','','','','',:id_habil)");
+				    $criartabela->bindValue(":id_habil", $id_habil);
+				    $criartabela->execute();
+						return true;
+				  }
 
-			            return true;
+				}
 
-				    } catch (PDOException $e) {
-				        echo "Erro ao adicionar na fotos: ".$e->getMessage();
-			          return false;
-				    }
+				function add_foto_perfil($img_perfil){
+					$pdo = conectar();
+				  $id_habil = $_SESSION['id_habilitado'];
+					// o unlink e para apaga os arquivos que estão na pasta do servidor
+					$dados_imagens = buscar_imagens($id_habil);
+					unlink($dados_imagens['img_perfil']);
+				  try {
+				    $query = $pdo->prepare("UPDATE imagens SET img_perfil = :img_perfil WHERE :id_habil = :id_habil");
+				    $query->bindValue(":img_perfil", $img_perfil);
+				    $query->bindValue(":id_habil", $id_habil);
+				    $query->execute();
+				    return true;
+				  } catch (\Exception $e) {
+				    echo "Erro ao adicionar foto perfil: ".$e->getMessage();
+				    return false;
+				  }
+
+
+				}
+				function add_foto_slide1($img_slide1){
+				  $pdo = conectar();
+				  $id_habil = $_SESSION['id_habilitado'];
+					// o unlink e para apaga os arquivos que estão na pasta do servidor
+					$dados_imagens = buscar_imagens($id_habil);
+					unlink($dados_imagens['img_slide1']);
+				  try {
+				    $query = $pdo->prepare("UPDATE imagens SET img_slide1 = :img_slide1 WHERE :id_habil = :id_habil");
+				    $query->bindValue(":img_slide1", $img_slide1);
+				    $query->bindValue(":id_habil", $id_habil);
+				    $query->execute();
+				    return true;
+				  } catch (\Exception $e) {
+				    echo "Erro ao adicionar foto slide 1: ".$e->getMessage();
+				    return false;
+				  }
+
+
+				}
+				function add_foto_slide2($img_slide2){
+				  $pdo = conectar();
+				  $id_habil = $_SESSION['id_habilitado'];
+					// o unlink e para apaga os arquivos que estão na pasta do servidor
+					$dados_imagens = buscar_imagens($id_habil);
+					unlink($dados_imagens['img_slide2']);
+				  try {
+				    $query = $pdo->prepare("UPDATE imagens SET img_slide2 = :img_slide2 WHERE :id_habil = :id_habil");
+				    $query->bindValue(":img_slide2", $img_slide2);
+				    $query->bindValue(":id_habil", $id_habil);
+				    $query->execute();
+				    return true;
+				  } catch (\Exception $e) {
+				    echo "Erro ao adicionar foto slide 2: ".$e->getMessage();
+				    return false;
+				  }
+
+
+				}
+				function add_foto_slide3($img_slide3){
+				  $pdo = conectar();
+				  $id_habil = $_SESSION['id_habilitado'];
+					// o unlink e para apaga os arquivos que estão na pasta do servidor
+					$dados_imagens = buscar_imagens($id_habil);
+					unlink($dados_imagens['img_slide3']);
+				  try {
+				    $query = $pdo->prepare("UPDATE imagens SET img_slide3 = :img_slide3 WHERE :id_habil = :id_habil");
+				    $query->bindValue(":img_slide3", $img_slide3);
+				    $query->bindValue(":id_habil", $id_habil);
+				    $query->execute();
+				    return true;
+				  } catch (\Exception $e) {
+				    echo "Erro ao adicionar foto slide3: ".$e->getMessage();
+				    return false;
+				  }
+
+
+				}
+				function add_foto_descricao($img_descricao){
+				  $pdo = conectar();
+				  $id_habil = $_SESSION['id_habilitado'];
+					// o unlink e para apaga os arquivos que estão na pasta do servidor
+					$dados_imagens = buscar_imagens($id_habil);
+					unlink($dados_imagens['img_descricao']);
+				  try {
+				    $query = $pdo->prepare("UPDATE imagens SET img_descricao = :img_descricao WHERE :id_habil = :id_habil");
+				    $query->bindValue(":img_descricao", $img_descricao);
+				    $query->bindValue(":id_habil", $id_habil);
+				    $query->execute();
+				    return true;
+				  } catch (\Exception $e) {
+				    echo "Erro ao adicionar foto descrição: ".$e->getMessage();
+				    return false;
+				  }
 				}
 
 				// controle de acesso busca informações
@@ -464,7 +571,7 @@ function cadastrar($dados_usuario){
 
 				}
 
-
+					// função para deleta todos as fotos do servido e tebela imagens
 				function img_delete($id_imagem,$id_h){
 					$dados_imagens = buscar_imagens($id_h);
 					$pdo = conectar();
@@ -696,7 +803,8 @@ function cadastrar($dados_usuario){
 					$inicio = 5;
 					$fim = 1;
 					$pdo = conectar();
-					$sql = "SELECT * FROM tabela_comentario g INNER JOIN usuarios a ON g.id_u = a.id ORDER BY 	id_comentario DESC LIMIT 5;";
+					// juntadando as tabelas usuario e comentario e buscando pelo id do habilitado
+					$sql = "SELECT * FROM tabela_comentario g INNER JOIN usuarios a ON g.id_u = a.id WHERE id_p = :id_p ORDER BY 	id_comentario DESC LIMIT 5;";
 					$sql = $pdo->prepare($sql);
 					$sql->bindValue(":id_p",$id_h);
 					$sql->execute();
@@ -722,8 +830,8 @@ function cadastrar($dados_usuario){
 
 				// paginação
 				function paginacao_proximo($pg){
-					$inicio = $pg + 3;
-					$fim = $inicio + 2;
+					$inicio = $pg + 9;
+					$fim = $inicio + 8;
 					$pdo = conectar();
 					$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
 					$sql = $pdo->prepare($sql);
@@ -732,9 +840,25 @@ function cadastrar($dados_usuario){
 				}
 				function  paginacao_anterio($pg){
 					$inicio = $pg;
-					$fim = $inicio+3;
+					$fim = $inicio+9;
 					$pdo = conectar();
 					$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT $inicio, $fim";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+				}
+
+				// funções do admin
+				function buscar_habilitados_ativo(){
+					$pdo = conectar();
+					$sql = "SELECT * FROM habilitados WHERE status = 1";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+				}
+				function buscar_habilitados_inativos(){
+					$pdo = conectar();
+					$sql = "SELECT * FROM habilitados WHERE status = 0";
 					$sql = $pdo->prepare($sql);
 					$sql->execute();
 					return $sql;

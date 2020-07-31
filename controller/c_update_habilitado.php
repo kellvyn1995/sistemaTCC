@@ -29,6 +29,7 @@ include_once "c_consulta.php";
 
         case 'add_img':
                 // capturando as imagens
+                $pasta = "../libs/img/";
                 $formatosPermitidos = array("png","jpeg","jpg","gif"); // formatos permitidos
                 $perfil = pathinfo($_FILES['perfil']['name'], PATHINFO_EXTENSION);
                 $slide1 = pathinfo($_FILES['slide1']['name'], PATHINFO_EXTENSION);
@@ -36,29 +37,58 @@ include_once "c_consulta.php";
                 $slide3 = pathinfo($_FILES['slide3']['name'], PATHINFO_EXTENSION);
                 $img_descricao = pathinfo($_FILES['img_descricao']['name'], PATHINFO_EXTENSION);
                 // verificar se todoas as imagens estão no formato certo
-                if (in_array($perfil, $formatosPermitidos) && in_array($slide1, $formatosPermitidos) && in_array($slide2, $formatosPermitidos) && in_array($slide3, $formatosPermitidos) && in_array($img_descricao, $formatosPermitidos)) {
-                  $pasta = "../libs/img/";
+                if (in_array($perfil, $formatosPermitidos)) {
                   $temporario_perfil = $_FILES['perfil']['tmp_name'];
-                  $temporario_slide1 = $_FILES['slide1']['tmp_name'];
-                  $temporario_slide2 = $_FILES['slide2']['tmp_name'];
-                  $temporario_slide3 = $_FILES['slide3']['tmp_name'];
-                  $temporario_img_descricao = $_FILES['img_descricao']['tmp_name'];
                   $novoNome_perfil = uniqid().".$perfil";
-                  $novoNome_slide1 = uniqid().".$slide1";
-                  $novoNome_slide2 = uniqid().".$slide2";
-                  $novoNome_slide3 = uniqid().".$slide3";
-                  $novoNome_img_descricao = uniqid().".$img_descricao";
-                  if (move_uploaded_file($temporario_perfil, $pasta.$novoNome_perfil) && move_uploaded_file($temporario_slide1, $pasta.$novoNome_slide1) && move_uploaded_file($temporario_slide2, $pasta.$novoNome_slide2) && move_uploaded_file($temporario_slide3, $pasta.$novoNome_slide3) && move_uploaded_file($temporario_img_descricao, $pasta.$novoNome_img_descricao)) {
-                    $foto_retorno = add_fotos($pasta.$novoNome_perfil,$pasta.$novoNome_slide1,$pasta.$novoNome_slide2,$pasta.$novoNome_slide3,$pasta.$novoNome_img_descricao);
-                    if ($foto_retorno) {
-                      header("Location: ../view/meuPerfil.php");
-                    }
+                  if (move_uploaded_file($temporario_perfil, $pasta.$novoNome_perfil)) {
+                    $foto_retorno = add_foto_perfil($pasta.$novoNome_perfil);
+                    header("Location: ../view/atualizarHabilitado.php");
                   }else {
-                    echo "erro, não foi possivel fazer o uploda";
+                    echo "erro ao adicionar foto do perfil no banco de dados!";
                   }
-                }else {
-                  echo "formato invalido";
                 }
+                if (in_array($slide1, $formatosPermitidos)) {
+                  $temporario_slide1 = $_FILES['slide1']['tmp_name'];
+                  $novoNome_slide1 = uniqid().".$slide1";
+                  if (move_uploaded_file($temporario_slide1, $pasta.$novoNome_slide1)) {
+                    add_foto_slide1($pasta.$novoNome_slide1);
+                    header("Location: ../view/atualizarHabilitado.php");
+                  }else {
+                    echo "erro ao adicionar foto do slide 1 no banco de dados!";
+                  }
+                }
+                if (in_array($slide2, $formatosPermitidos)) {
+                  $temporario_slide2 = $_FILES['slide2']['tmp_name'];
+                  $novoNome_slide2 = uniqid().".$slide2";
+                  if (move_uploaded_file($temporario_slide2, $pasta.$novoNome_slide2)) {
+                    add_foto_slide2($pasta.$novoNome_slide2);
+                    header("Location: ../view/atualizarHabilitado.php");
+                  }else {
+                    echo "erro ao adicionar foto do slide 2 no banco de dados!";
+                  }
+                }
+                if (in_array($slide3, $formatosPermitidos)) {
+                  $temporario_slide3 = $_FILES['slide3']['tmp_name'];
+                  $novoNome_slide3 = uniqid().".$slide3";
+                  if (move_uploaded_file($temporario_slide3, $pasta.$novoNome_slide3)) {
+                    add_foto_slide3($pasta.$novoNome_slide3);
+                    header("Location: ../view/atualizarHabilitado.php");
+                  }else {
+                    echo "erro ao adicionar foto do slide 3 no banco de dados!";
+                  }
+                }
+                if (in_array($img_descricao, $formatosPermitidos)) {
+                  $temporario_img_descricao = $_FILES['img_descricao']['tmp_name'];
+                  $novoNome_img_descricao = uniqid().".$img_descricao";
+                  if (move_uploaded_file($temporario_img_descricao, $pasta.$novoNome_img_descricao)) {
+                    add_foto_descricao($pasta.$novoNome_img_descricao);
+                    header("Location: ../view/atualizarHabilitado.php");
+                  }else {
+                    echo "erro ao adicionar foto do descrição no banco de dados!";
+                  }
+                }
+
+
             break;
 
         case 'delete':
@@ -114,6 +144,7 @@ include_once "c_consulta.php";
               header("Location: ../view/meuPerfil.php");
             }
             break;
+
 
         default:
             //no action sent
