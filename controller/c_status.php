@@ -8,9 +8,11 @@ switch (get_post_action('status','ativos','todos','inativos')) {
     $id_habilitado = addslashes($_POST['id_habilitado']);
     $atual_status = addslashes($_POST['atual_status']);
           $muda_status = atualizar_status($id_habilitado,$atual_status);
-          header("Location: ../view/admin.php");
+          //echo "<meta HTTP-EQUIV='Refresh' CONTENT='0;URL=../view/admin.php'>";
+          echo "<script>top.window.location='../view/admin.php';</script>";
+          //header("Location: ../view/admin.php");
   }else {
-    header("Location: ../view/aviso?aviso=4.php");
+    echo "<script>top.window.location='../view/aviso?aviso=4.php';</script>";
   }
     break;
 

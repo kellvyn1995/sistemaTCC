@@ -20,10 +20,10 @@ include_once "c_consulta.php";
                     include_once "../model/modelUsuario.php";
                     $status = atualizar_habilitado($nome_apresentacao,$apresentacao,$horario_atendimento,$titulo_descricao,$texto_descricao,$hashtags);
                         if ($status) {
-                          header("Location: ../view/meuPerfil.php");
+                          echo "<script>top.window.location='../view/meuPerfil.php';</script>";
                         }
             }else {
-              header("Location: ../view/cadastrohabilitado.php?pg=1");
+              echo "<script>top.window.location='../view/cadastrohabilitado.php?pg=1';</script>";
             }
             break;
 
@@ -42,7 +42,7 @@ include_once "c_consulta.php";
                   $novoNome_perfil = uniqid().".$perfil";
                   if (move_uploaded_file($temporario_perfil, $pasta.$novoNome_perfil)) {
                     $foto_retorno = add_foto_perfil($pasta.$novoNome_perfil);
-                    header("Location: ../view/atualizarHabilitado.php");
+                    echo "<script>top.window.location='../view/atualizarHabilitado.php';</script>";
                   }else {
                     echo "erro ao adicionar foto do perfil no banco de dados!";
                   }
@@ -52,7 +52,7 @@ include_once "c_consulta.php";
                   $novoNome_slide1 = uniqid().".$slide1";
                   if (move_uploaded_file($temporario_slide1, $pasta.$novoNome_slide1)) {
                     add_foto_slide1($pasta.$novoNome_slide1);
-                    header("Location: ../view/atualizarHabilitado.php");
+                    echo "<script>top.window.location='../view/atualizarHabilitado.php';</script>";
                   }else {
                     echo "erro ao adicionar foto do slide 1 no banco de dados!";
                   }
@@ -62,7 +62,7 @@ include_once "c_consulta.php";
                   $novoNome_slide2 = uniqid().".$slide2";
                   if (move_uploaded_file($temporario_slide2, $pasta.$novoNome_slide2)) {
                     add_foto_slide2($pasta.$novoNome_slide2);
-                    header("Location: ../view/atualizarHabilitado.php");
+                    echo "<script>top.window.location='../view/atualizarHabilitado.php';</script>";
                   }else {
                     echo "erro ao adicionar foto do slide 2 no banco de dados!";
                   }
@@ -72,7 +72,7 @@ include_once "c_consulta.php";
                   $novoNome_slide3 = uniqid().".$slide3";
                   if (move_uploaded_file($temporario_slide3, $pasta.$novoNome_slide3)) {
                     add_foto_slide3($pasta.$novoNome_slide3);
-                    header("Location: ../view/atualizarHabilitado.php");
+                    echo "<script>top.window.location='../view/atualizarHabilitado.php';</script>";
                   }else {
                     echo "erro ao adicionar foto do slide 3 no banco de dados!";
                   }
@@ -82,7 +82,7 @@ include_once "c_consulta.php";
                   $novoNome_img_descricao = uniqid().".$img_descricao";
                   if (move_uploaded_file($temporario_img_descricao, $pasta.$novoNome_img_descricao)) {
                     add_foto_descricao($pasta.$novoNome_img_descricao);
-                    header("Location: ../view/atualizarHabilitado.php");
+                    echo "<script>top.window.location='../view/atualizarHabilitado.php';</script>";
                   }else {
                     echo "erro ao adicionar foto do descrição no banco de dados!";
                   }
@@ -96,7 +96,7 @@ include_once "c_consulta.php";
               $id_h = addslashes($_POST['id_h']);
               $delete = img_delete($id_img,$id_h);
               if ($delete) {
-                header("Location: ../view/meuPerfil.php");
+                echo "<script>top.window.location='../view/meuPerfil.php';</script>";
               }
             break;
 
@@ -106,7 +106,7 @@ include_once "c_consulta.php";
                 $link3 = html_entity_decode($_POST['link3']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
                 $link_info = add_links($link1,$link2,$link3);
                   if ($link_info) {
-                    header("Location: ../view/meuPerfil.php");
+                    echo "<script>top.window.location='../view/meuPerfil.php';</script>";
                   }
                 break;
 
@@ -114,7 +114,7 @@ include_once "c_consulta.php";
                       $id_links = $_POST['id_links'];
                       $link_info = delete_links($id_links);
                         if ($link_info) {
-                          header("Location: ../view/meuPerfil.php");
+                          echo "<script>top.window.location='../view/meuPerfil.php';</script>";
                         }else {
                           echo "não deu certo";
                         }
@@ -128,7 +128,7 @@ include_once "c_consulta.php";
             $rede6 = html_entity_decode($_POST['github']); //html_entity_decode — Converte todas as entidades HTML para os seus caracteres
             $rede_info = add_sociais($rede1,$rede2,$rede3,$rede4,$rede5,$rede6);
               if ($rede_info) {
-                header("Location: ../view/meuPerfil.php");
+                echo "<script>top.window.location='../view/meuPerfil.php';</script>";
               }
           break;
           case 'atualiza_redes':
@@ -141,7 +141,7 @@ include_once "c_consulta.php";
           $idreferencia = ($_POST['id_rede']);
           $rede_at = atualiza_sociais($rede1,$rede2,$rede3,$rede4,$rede5,$rede6,$idreferencia);
             if ($rede_at) {
-              header("Location: ../view/meuPerfil.php");
+              echo "<script>top.window.location='../view/meuPerfil.php';</script>";
             }
             break;
 

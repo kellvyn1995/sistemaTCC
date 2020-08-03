@@ -7,7 +7,7 @@ include_once "../model/modelUsuario.php";
 if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
   $id_usuario = $_SESSION['idUser'];
 }else {
-  header("Location: ../view/login.php");
+  echo "<script>top.window.location='../view/login.php';</script>";
 }
 
 
@@ -32,10 +32,11 @@ if (!empty($nome_apresentacao) && !empty($horario_atendimento) && !empty($aprese
                   unset($_SESSION['id_m']);
                   unset($_SESSION['id_h']);
                   unset($_SESSION['id_admin']);
-                  header("Location: ../view/aviso.php?aviso=3");
+                  echo "<script>top.window.location='../view/aviso.php?aviso=3';</script>";
+
                 }
     }else {
-      header("Location: ../view/cadastrohabilitado.php?pg=1");
+      echo "<script>top.window.location='../view/cadastrohabilitado.php?pg=1';</script>";
     }
 
  ?>

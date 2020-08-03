@@ -8,6 +8,7 @@ include_once "../controller/c_admin.php";
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <?php include "../view/menu.php"; ?>
@@ -86,7 +87,7 @@ while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
       <?php if ($lista["status"] == 0): ?>
           <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
       <?php endif; ?>
-      
+
       <!-- <button type="button" name="verificar" target="_blank" class="btn btn-danger">Verificar</button> -->
     </td>
   </tr>

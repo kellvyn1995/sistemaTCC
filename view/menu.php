@@ -9,7 +9,7 @@
                 <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="view/ajuda.php">Ajuda</a>
+                <a class="nav-link" href="#">Ajuda</a>
             </li>
 
             <!--se tive uma sessão mostra nome do usuario-->
@@ -57,13 +57,14 @@
                    <a class="dropdown-item" href="../view/gerenciador_comentarios.php">Comentarios</a>
                 <?php endif; ?>
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
-                  <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> uma habiltado</a>
+                  <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> um habiltado</a>
                 <?php endif; ?>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
                 <?php if (isset($_SESSION['id_admin']) && !empty($_SESSION['id_admin'])): ?>
                   <form class="" action="../view/admin.php" method="post">
                     <button type="submit" class="btn btn-light dropdown-item" name="todos">Admin</button>
                   </form>
+                  <a class="dropdown-item" href="../view/safadao.php">Código do anjo</a>
                   <!-- <button type="button" class="btn btn-light" name="todos"><a class="dropdown-item" href="../view/admin.php">Admin</a></button> -->
                 <?php endif; ?>
                 <a class="dropdown-item" href="../controller/logout.php">Sair</a>

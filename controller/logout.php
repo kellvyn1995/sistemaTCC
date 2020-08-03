@@ -9,6 +9,5 @@ unset($_SESSION['id_m']);
 unset($_SESSION['id_h']);
 unset($_SESSION['id_admin']);
 // ele sera redirecionado para pagina inicial
-header("Location: ../index.php")
-
+echo "<script>top.window.location='../index.php';</script>";
  ?>

@@ -16,7 +16,7 @@ o switch vai chama uma função que vai verifica o name do botão clicado
                     include_once "../model/modelUsuario.php";
                     $update_agenda = update_agenda($data_agenda,$local_agenda,$evento_agenda,$informacao_agenda,$_SESSION['id_habilitado']);
                         if ($update_agenda) {
-                          header("Location: ../view/agenda.php");
+                          echo "<script>top.window.location='../view/agenda.php';</script>";
                         }
             }else {
               // erro
@@ -37,11 +37,11 @@ o switch vai chama uma função que vai verifica o name do botão clicado
                     include_once "../model/modelUsuario.php";
                     $add_agenda = add_agenda($data_agenda,$local_agenda,$evento_agenda,$informacao_agenda,$_SESSION['id_habilitado']);
                         if ($add_agenda) {
-                          header("Location: ../view/agenda.php");
+                          echo "<script>top.window.location='../view/agenda.php';</script>";
                         }
             }else {
               // erro
-              header("Location: ../view/agenda.php");
+              echo "<script>top.window.location='../view/agenda.php';</script>";
             }
         break;
 
@@ -49,7 +49,7 @@ o switch vai chama uma função que vai verifica o name do botão clicado
         $id_agenda = addslashes($_POST['id_agenda']);
         $delete = delete_agenda($id_agenda);
         if ($delete) {
-          header("Location: ../view/agenda.php");
+          echo "<script>top.window.location='../view/agenda.php';</script>";
         }else {
           echo "erro ao Deletar";
         }

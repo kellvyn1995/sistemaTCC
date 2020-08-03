@@ -7,7 +7,7 @@ if(isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])){
   $consulta = $pdo->query("SELECT * FROM habilitados WHERE id_habilitado = $id;"); // realizando a consulta
   $buscar = $consulta->fetch(PDO::FETCH_ASSOC);
 }else {
-  header("Location: ../view/aviso.php?aviso=1");
+  echo "<script>top.window.location='../view/aviso.php?aviso=1';</script>";
 }
 
  ?>

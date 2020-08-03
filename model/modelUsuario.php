@@ -463,7 +463,7 @@ function cadastrar($dados_usuario){
 					$dados_imagens = buscar_imagens($id_habil);
 					unlink($dados_imagens['img_perfil']);
 				  try {
-				    $query = $pdo->prepare("UPDATE imagens SET img_perfil = :img_perfil WHERE :id_habil = :id_habil");
+				    $query = $pdo->prepare("UPDATE imagens SET img_perfil = :img_perfil WHERE id_habil = :id_habil");
 				    $query->bindValue(":img_perfil", $img_perfil);
 				    $query->bindValue(":id_habil", $id_habil);
 				    $query->execute();
@@ -482,7 +482,7 @@ function cadastrar($dados_usuario){
 					$dados_imagens = buscar_imagens($id_habil);
 					unlink($dados_imagens['img_slide1']);
 				  try {
-				    $query = $pdo->prepare("UPDATE imagens SET img_slide1 = :img_slide1 WHERE :id_habil = :id_habil");
+				    $query = $pdo->prepare("UPDATE imagens SET img_slide1 = :img_slide1 WHERE id_habil = :id_habil");
 				    $query->bindValue(":img_slide1", $img_slide1);
 				    $query->bindValue(":id_habil", $id_habil);
 				    $query->execute();
@@ -501,7 +501,7 @@ function cadastrar($dados_usuario){
 					$dados_imagens = buscar_imagens($id_habil);
 					unlink($dados_imagens['img_slide2']);
 				  try {
-				    $query = $pdo->prepare("UPDATE imagens SET img_slide2 = :img_slide2 WHERE :id_habil = :id_habil");
+				    $query = $pdo->prepare("UPDATE imagens SET img_slide2 = :img_slide2 WHERE id_habil = :id_habil");
 				    $query->bindValue(":img_slide2", $img_slide2);
 				    $query->bindValue(":id_habil", $id_habil);
 				    $query->execute();
@@ -520,7 +520,7 @@ function cadastrar($dados_usuario){
 					$dados_imagens = buscar_imagens($id_habil);
 					unlink($dados_imagens['img_slide3']);
 				  try {
-				    $query = $pdo->prepare("UPDATE imagens SET img_slide3 = :img_slide3 WHERE :id_habil = :id_habil");
+				    $query = $pdo->prepare("UPDATE imagens SET img_slide3 = :img_slide3 WHERE id_habil = :id_habil");
 				    $query->bindValue(":img_slide3", $img_slide3);
 				    $query->bindValue(":id_habil", $id_habil);
 				    $query->execute();
@@ -539,7 +539,7 @@ function cadastrar($dados_usuario){
 					$dados_imagens = buscar_imagens($id_habil);
 					unlink($dados_imagens['img_descricao']);
 				  try {
-				    $query = $pdo->prepare("UPDATE imagens SET img_descricao = :img_descricao WHERE :id_habil = :id_habil");
+				    $query = $pdo->prepare("UPDATE imagens SET img_descricao = :img_descricao WHERE id_habil = :id_habil");
 				    $query->bindValue(":img_descricao", $img_descricao);
 				    $query->bindValue(":id_habil", $id_habil);
 				    $query->execute();
@@ -736,7 +736,7 @@ function cadastrar($dados_usuario){
 						$sql->execute();
 						return $sql;
 					}else {
-						$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT 0, 3";
+						$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT 0, 9";
 						$sql = $pdo->prepare($sql);
 						$sql->execute();
 						return $sql;

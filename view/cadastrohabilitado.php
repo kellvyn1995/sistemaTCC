@@ -10,6 +10,7 @@ include_once "../controller/c_verifica.php";
     <meta charset="UTF-8">
     <title>cadastrto de usuario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <?php include "menu.php"; ?>
@@ -54,7 +55,7 @@ include_once "../controller/c_verifica.php";
         </div>
         <div class="form-group col-md-6">
           <label for="exampleFormControlTextarea1">Apresentação</label>
-          <textarea class="form-control" name="apresentacao" id="exampleFormControlTextarea1" placeholder="ex: Modelo comecial, servir como ajuda visual para fotografias de roupas e acessorios" rows="3"></textarea>
+          <textarea class="form-control" name="apresentacao" id="exampleFormControlTextarea1" placeholder="ex: Modelo comercial, servir como ajuda visual para fotografias de roupas e acessórios" rows="3"></textarea>
           <label for="" class="my-2">Texto de descrição</label>
         <textarea class="form-control" name="texto_descricao" placeholder="ex: Explique seu trabalho e suas experiências" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>

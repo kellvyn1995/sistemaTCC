@@ -8,7 +8,7 @@ if(isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])){
     verificar_imagem($id_h_f);
   }
 }else {
-  header("Location: ../index.php");
+  echo "<script>top.window.location='../index.php';</script>";
 }
 
 // verifica se tem uma sessão para depois busca id habilitado

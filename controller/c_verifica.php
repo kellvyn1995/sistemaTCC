@@ -5,7 +5,7 @@ include_once "../model/conexao.php";
 if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
 
 }else {
-  header("Location: ../view/login.php");
+  echo "<script>top.window.location='../view/login.php';</script>";
 }
 // o arquivo esta sendo utilizado em cadastrohabilitado
 

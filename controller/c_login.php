@@ -20,24 +20,24 @@ if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['senha']) 
           if ($u->buscar_um_habilitado($a)) {
             // verificar se é um admin
              if ($u->buscar_um_admin($a)) {
-                header("Location: ../view/admin.php");
+               echo "<script>top.window.location='../view/admin.php';</script>";
               }else {
-                  header("Location: ../view/meuPerfil.php");
+                echo "<script>top.window.location='../view/meuPerfil.php';</script>";
               }
           }else {
-            header("Location: ../index.php?pg=index");
+            echo "<script>top.window.location='../index.php?pg=index';</script>";
           }
     }else {
-      header("Location: ../view/login.php");
+      echo "<script>top.window.location='../view/login.php';</script>";
     }
 
   }else {
     // usuario e senha incoreto
-    header("Location: ../view/login.php?erro=1");
+    echo "<script>top.window.location='../view/login.php?erro=1';</script>";
   }
 }else {
   // ser os dados não forem informados, será redirecionado para pagina de login
-  header("Location: ../view/login.php?erro=2");
+  echo "<script>top.window.location='../view/login.php?erro=2';</script>";
 }
 
 
