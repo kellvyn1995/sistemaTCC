@@ -283,3 +283,19 @@ function atualiza_sociais($youtube,$twitter,$linkedin,$instagram,$facebook,$gith
     }
 }
  ?>
+
+ <?php
+
+$nomeRemetente = $_POST['name'];
+$telefone = $_POST['phone'];
+$email = $_POST['email'];
+$mensagem = $_POST['message'];
+
+$to = "contato@lucasemateus.890m.com";
+$assunto = "Mensagem de Contato";
+
+//MENSAGEM DO EMAIL
+$mensagemEnviada = "<p><strong>Nome:</strong> ".$nomeRemetente."</p>";
+$mensagemEnviada .= "<p><strong>Telefone:</strong> ".$telefone."</p>";
+$mensagemEnviada .= "<p><strong>E-mail:</strong> ".$email."</p>";
+$mensagemEnviada .= "<p><strong>Mensagem:</strong><br><br> ".$mensagem;

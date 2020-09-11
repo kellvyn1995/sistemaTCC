@@ -1,7 +1,9 @@
 <?php
 // se o usuario estiver logado não tera acesso a essa pagina
 include_once "../controller/c_verifica.php";
-
+if(isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])){
+  echo "<script>top.window.location='../view/login.php';</script>";
+}
 
 ?>
 <!DOCTYPE html>

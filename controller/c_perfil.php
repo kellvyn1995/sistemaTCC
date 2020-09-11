@@ -14,7 +14,6 @@ include_once "../model/modelUsuario.php";
 // }
 
 
-
 $pdo = conectar(); //conxeão com banco de dados
 $consulta = $pdo->query("SELECT * FROM habilitados WHERE id_habilitado = $id_habilitado;"); // realizando a consulta
 $buscar = $consulta->fetch(PDO::FETCH_ASSOC);
@@ -26,4 +25,17 @@ $comentarios = buscar_comentario_5($id_habilitado);
 $comentariostodos = buscar_comentario($id_habilitado);
 $notas = buscar_nota_comentario($id_habilitado);
 $dados_redes = buscar_redes($id_habilitado);
+if (isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])) {
+  $comentarioemcontrado = comentario_encontrado($_SESSION['idUser'],$id_habilitado);
+}
+
+ // realizar busca pra saber ser o usuario já fez algum comentario
+// $minhase = $_SESSION['idUser'];
+// while ($comf = $comentariostodos->fetch(PDO::FETCH_ASSOC)) {
+// if ($comf['id_p'] == $id_habilitado && $comf['id_u'] == $minhase) {
+//   $comentarioemcontrado = 1;
+// }else {
+//   $comentarioemcontrado = 0;
+// }
+// }
  ?>

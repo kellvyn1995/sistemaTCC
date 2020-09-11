@@ -32,7 +32,7 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
                                 $pg = 0;
                               break;
                               case '2':
-                                  echo "Preencha todos os campos coretamente!";
+                                  echo "Preencha todos os campos corretamente!";
                                   $pg = 0;
                               break;
 
@@ -41,7 +41,7 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
                           </div>
                         <?php endif; ?>
                           <form id="login-form" class="form" action="/controller/c_login.php" method="POST">
-                            <img class="rounded mx-auto d-block" src="../libs/img/logo01menor.png">
+                            <img class="rounded mx-auto d-block" src="../media/logo01-reduzida-para-menu.png">
                               <h3 class="text-center text-dark">Entre na sua conta</h3>
                               <div class="form-group">
                                   <label for="username" class="text-dark">E-mail:</label><br>

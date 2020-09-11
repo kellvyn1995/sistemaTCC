@@ -144,7 +144,7 @@ if (isset($_POST['var'])) {
 
 <!--Agenda-->
   <div class="container p-3 my-3">
-    <table class="table table-striped">
+    <table class="table table-striped container p-3 my-3">
     <thead>AGENDA
       <tr>
         <th scope="col">Data</th>
@@ -168,7 +168,7 @@ if (isset($_POST['var'])) {
       <td name="data_agenda"><?php echo $lista["data"]; ?></td>
       <td name="local_agenda"><?php echo $lista["local"]; ?></td>
       <td name="evento_agenda"><?php echo $lista["evento"]; ?></td>
-      <td name="informacao_agenda"><?php echo $lista["informacao"]; ?></td>
+      <td class=" "name="informacao_agenda"><?php echo $lista["informacao"]; ?></td>
     </tr>
 
 
@@ -323,7 +323,8 @@ if (isset($_POST['var'])) {
   </div>
 
   <?php
-  if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser']) && $_SESSION['idUser'] != $id_m){?>
+  if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser']) && $_SESSION['idUser'] != $id_m ){?>
+    <?php if ($comentarioemcontrado == false): ?>
 <form class="row container centered row p-3 my-3 bg-dark text-white comentario" action="../controller/c_comentario.php" method="post" name="novoCOM">
   <input type="hidden" name="id_h" value="<?php echo $id_h;?>" />
   <div class="row container centered row p-3 my-3 bg-dark text-white comentario">
@@ -374,6 +375,7 @@ if (isset($_POST['var'])) {
     </div>
   </div>
   </form>
+  <?php endif; ?>
   <?php }?>
 </div>
 <!--comentar-->

@@ -53,7 +53,7 @@ switch (get_post_action('anterio','proximo','btbusca')) {
 <?php if ($ver == 1):?>
   <tr>
   <!--mostrando resultados da consulta-->
-  <form class="col-auto col-sm mb-3 " action="view/perfil.php?<?php $lista["nome_apresentacao"]?>" method="GET">
+  <form class="col-auto col-sm-4 mb-4 " action="view/perfil.php?<?php $lista["nome_apresentacao"]?>" method="GET">
     <input type="hidden" name="id_m" value="<?php echo $id_m;?>" /> <!-- input invisivel-->
     <input type="hidden" name="id_h" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
     <input type="hidden" name="ajuste" value="1" /> <!-- input invisivel-->

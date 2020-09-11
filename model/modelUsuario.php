@@ -828,6 +828,24 @@ function cadastrar($dados_usuario){
 					return $sql;
 				}
 
+				function comentario_encontrado($id_u,$id_h){
+					$pdo = conectar();
+					// verificar se o usuario já fez algum comentario
+					$sql = "SELECT * FROM tabela_comentario WHERE id_u = :id_u and id_p = :id_p";
+					$sql = $pdo->prepare($sql);
+					$sql->bindValue(":id_p",$id_h);
+					$sql->bindValue(":id_u",$id_u);
+					$sql->execute();
+
+					// verificar quantos registro tem com essa informação
+					if ($sql->rowCount() > 0) {
+						return true;
+					}else {
+						return false;
+					}
+
+				}
+
 				// paginação
 				function paginacao_proximo($pg){
 					$inicio = $pg + 9;

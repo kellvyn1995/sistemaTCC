@@ -15,7 +15,7 @@ include_once "../model/modelUsuario.php";
 
 $status = atualizar_usuario($dados_usuario);
 if ($status) {
-  echo "atualizado";
+  echo "<script>top.window.location='../view/aviso.php?aviso=5';</script>";
 }
 
 
