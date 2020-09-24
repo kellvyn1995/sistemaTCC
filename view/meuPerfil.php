@@ -93,7 +93,7 @@ include "../controller/c_perfil.php";
 </div>
 
 <!--Agenda-->
-  <div class="container p-3 my-3">
+  <div class="container table-responsive p-3 my-3">
     <table class="table table-striped">
     <thead>AGENDA
       <tr>

@@ -143,7 +143,7 @@ if (isset($_POST['var'])) {
 </div>
 
 <!--Agenda-->
-  <div class="container p-3 my-3">
+  <div class="container table-responsive p-3 my-3">
     <table class="table table-striped container p-3 my-3">
     <thead>AGENDA
       <tr>

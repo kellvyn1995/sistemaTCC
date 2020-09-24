@@ -28,7 +28,7 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
                             // verificação de ERRo
                             switch ($erro) {
                               case '1':
-                                echo "Email ou senha esta incorreto! ";
+                                echo "Email ou senha está incorreto! ";
                                 $pg = 0;
                               break;
                               case '2':
@@ -52,7 +52,7 @@ if(isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])){
                                   <input type="password" name="senha" class="form-control">
                               </div>
                               <div class="form-group">
-                                  <input type="submit" name="submit" class="btn btn-dark btn-md" value="Entra">
+                                  <input type="submit" name="submit" class="btn btn-dark btn-md" value="Entrar">
                               </div>
                               <div id="register-link" class="text-right">
                                   <a href="/view/cadastroUsuario.php?pg=" class="text-info">Não sou Cadastrado</a>

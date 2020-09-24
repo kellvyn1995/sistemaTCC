@@ -51,7 +51,7 @@
 
     <?php if ($aviso == 4): ?>
       <div class="jumbotron">
-        <h1 class="display-4">Usuario não é um administrado do sistema acesso negado!</h1>
+        <h1 class="display-4">Usuário não é um administrador do sistema acesso negado!</h1>
         <p class="lead">Somente os administradores do sistema tem acesso a essa página</p>
         <a class="btn btn-primary btn-lg" href="../index.php" role="button">Voltar para home</a>
       </div>

@@ -1,0 +1,148 @@
+<?php
+include_once "../controller/c_admin.php";
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<?php include "../view/menu.php"; ?>
+<!-- tabela -->
+<div class="container table-responsive p-3 my-3">
+  <table class="table table-hover table-dark" >
+    <thead>
+      <tr>
+        <th scope="col">Usuário</th>
+        <th scope="col">Habilitado</th>
+        <th scope="col">Justificativa</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Kellvyn</td>
+        <td>modelo carlos</td>
+        <td>Bloqueado pelo sistema</td>
+        <td>
+          <div class="dropdown">
+              <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bloqueado
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Analisa perfil</a>
+                <a class="dropdown-item" href="#">Analisa denúncias</a>
+                <a class="dropdown-item" href="#">Desbloquea</a>
+              </div>
+            </div>
+        </td>
+
+      </tr>
+      <tr>
+        <td>Kellvyn</td>
+        <td>modelo carlos</td>
+        <td>Habilitado solicita análise </td>
+        <td>
+          <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bloqueado
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Analisa perfil</a>
+                <a class="dropdown-item" href="#">Analisa denúncias</a>
+                <a class="dropdown-item" href="#">Analisa solicitação</a>
+                <a class="dropdown-item" href="#">Desbloquea</a>
+              </div>
+            </div>
+        </td>
+
+      </tr>
+      <tr>
+
+        <td>Kellvyn</td>
+        <td>modelo carlos</td>
+        <td>Bloqueado pelo administrador</td>
+        <td>
+          <div class="dropdown">
+              <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Bloqueado
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Analisa perfil</a>
+                <a class="dropdown-item" href="#">Analisa denúncias</a>
+                <a class="dropdown-item" href="#">Desbloquea</a>
+              </div>
+            </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+  ...more buttons...
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Analisa denúncias</h5>
+          <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" data-spy="scroll" data-target="#navbar-exemplo">
+          <div id="navbar-exemplo">
+            <ul class="nav nav-tabs" role="tablist">
+              <div id="list-example" class="list-group col-3">
+                <a class="list-group-item list-group-item-action" href="#list-item-1">Usuário 1</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2">Usuário 2</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3">Usuário 3</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-4">Usuário 4</a>
+              </div>
+              <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example col">
+                <h4 id="list-item-1">Item 1</h4>
+                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
+                <h4 id="list-item-2">Item 2</h4>
+                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
+                <h4 id="list-item-3">Item 3</h4>
+                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
+                <h4 id="list-item-4">Item 4</h4>
+                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
+              </div>
+            </ul>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

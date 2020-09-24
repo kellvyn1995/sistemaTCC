@@ -21,7 +21,7 @@ include_once "../controller/c_status.php";
     </tbody>
   </table>
 
-
+<div class="container table-responsive p-3 my-3 ">
   <table class="table table-striped table-dark">
     <form class="" action="" method="post">
       <thead>

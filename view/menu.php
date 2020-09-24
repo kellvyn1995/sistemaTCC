@@ -31,7 +31,7 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0 mr-3" method="post" action="../index.php">
-            <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Digite o que procura" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name="buscar" placeholder="Digite o que procura" aria-label="Search" data-toggle="tooltip" data-placement="top" title="exemplos de busca: modelo carlos, modelos ou #moda">
             <button class="btn btn-outline-success my-2 my-sm-0" name="btbusca" type="submit">Pesquisa</button>
             <input type="hidden" name="env" value="envBusca">
         </form>
@@ -54,7 +54,7 @@
                   <a class="dropdown-item" href="../view/agenda.php?pg=agenda">Agenda</a>
                 <?php endif; ?>
                 <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
-                   <a class="dropdown-item" href="../view/gerenciador_comentarios.php">Comentarios</a>
+                   <a class="dropdown-item" href="../view/gerenciador_comentarios.php">Comentários</a>
                 <?php endif; ?>
                 <?php if (empty($_SESSION['id_habilitado'])): ?>
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> um habiltado</a>
@@ -65,6 +65,7 @@
                     <button type="submit" class="btn btn-light dropdown-item" name="todos">Admin</button>
                   </form>
                   <a class="dropdown-item" href="../view/safadao.php">Código do anjo</a>
+                  <a class="dropdown-item" href="../view/denuncia.php">Denúncias</a>
                   <!-- <button type="button" class="btn btn-light" name="todos"><a class="dropdown-item" href="../view/admin.php">Admin</a></button> -->
                 <?php endif; ?>
                 <a class="dropdown-item" href="../controller/logout.php">Sair</a>
@@ -73,7 +74,7 @@
 
         <?php endif; ?>
         <?php if (isset($_SESSION['idUser']) == false): ?>
-          <a type="button" class="btn btn-success" href="../view/login.php?pg=login">Entra</a>
+          <a type="button" class="btn btn-success" href="../view/login.php?pg=login">Entrar</a>
         <?php endif; ?>
     </div>
 </nav>
