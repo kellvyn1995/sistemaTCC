@@ -736,7 +736,7 @@ function cadastrar($dados_usuario){
 						$sql->execute();
 						return $sql;
 					}else {
-						$sql = "SELECT * FROM habilitados WHERE status = 1 ORDER BY id_habilitado DESC LIMIT 0, 9";
+						$sql = "SELECT * FROM habilitados WHERE status = 1 OR status = 2 ORDER BY id_habilitado DESC LIMIT 0, 9";
 						$sql = $pdo->prepare($sql);
 						$sql->execute();
 						return $sql;
@@ -880,6 +880,152 @@ function cadastrar($dados_usuario){
 					$sql = $pdo->prepare($sql);
 					$sql->execute();
 					return $sql;
+				}
+				// funções para parte de denuncia
+				function registra_denuncia($mensagem_denuncia,$id_do_u,$id_do_h){
+					$pdo = conectar();
+					try {
+							$query = $pdo->prepare("INSERT INTO denuncia (mensagem,id_fez_denuncia,id_h_denuncia) VALUES (:mensagem_denuncia,:id_do_u,:id_do_h)");
+								$query->bindValue(":mensagem_denuncia", $mensagem_denuncia);
+								$query->bindValue(":id_do_u", $id_do_u);
+								$query->bindValue(":id_do_h",$id_do_h);
+								$query->execute();
+								status_denuncia($id_do_h);
+								return true;
+					} catch (PDOException $e) {
+							echo "Erro ao realizar denuncia: ".$e->getMessage();
+							return false;
+					}
+				}
+				function status_denuncia($id_h){
+					$pdo = conectar();
+					try {
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 2 WHERE id_habilitado = :id_h");
+							$query->bindValue(":id_h",$id_h);
+							$query->execute();
+							return true;
+					} catch (PDOException $e) {
+							echo "falha ao bloquea habilitado!".$e->getMessage();
+							return false;
+					}
+				}
+				function buscar_habilitados_denunciados(){
+					$pdo = conectar();
+					$array = array();
+					$sql = "SELECT * FROM denuncia d INNER JOIN usuarios a ON d.id_fez_denuncia = a.id INNER JOIN habilitados h ON d.id_h_denuncia = h.id_habilitado;";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+					if ($sql->rowCount() > 0) {
+						$array = $sql->fetch();
+						return $array;
+					}else {
+						return false;
+					}
+				}
+				function buscar_habilitados_x($id_h){
+					$pdo = conectar();
+					$array = array();
+					$sql = "SELECT * FROM denuncia d INNER JOIN usuarios a ON d.id_fez_denuncia = a.id INNER JOIN habilitados h ON d.id_h_denuncia = h.id_habilitado WHERE id_h_denuncia = $id_h;";
+					// $query->bindValue(":id_h",$id_h);
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+					if ($sql->rowCount() > 0) {
+						$array = $sql->fetch();
+						return $array;
+					}else {
+						return false;
+					}
+				}
+				function buscar_h_p_denunciado($id_h){
+					$pdo = conectar();
+					$array = array();
+					$sql = "SELECT id_usuario FROM habilitados WHERE id_habilitado = $id_h;";
+					// $query->bindValue(":id_h",$id_h);
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+					// if ($sql->rowCount() > 0) {
+					// 	$array = $sql->fetch();
+					// 	return $array;
+					// }else {
+					// 	return false;
+					// }
+
+				}
+				function bloquea_habilitado($id_h){
+					$pdo = conectar();
+					try {
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 3 WHERE id_habilitado = :id_h");
+							$query->bindValue(":id_h",$id_h);
+							$query->execute();
+							return true;
+					} catch (PDOException $e) {
+							echo "falha ao bloquea habilitado!".$e->getMessage();
+							return false;
+					}
+
+				}
+				function desbloquea_habilitado($id_h){
+					$pdo = conectar();
+					try {
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 1 WHERE id_habilitado = :id_h");
+							$query->bindValue(":id_h",$id_h);
+							$query->execute();
+							return true;
+					} catch (PDOException $e) {
+							echo "falha ao desbloquea habilitado!".$e->getMessage();
+							return false;
+					}
+
+				}
+				function buscar_habilitados_bloqueados(){
+					$pdo = conectar();
+					$sql = "SELECT * FROM denuncia WHERE status = 3";
+					$sql = $pdo->prepare($sql);
+					$sql->execute();
+					return $sql;
+				}
+
+				function solicitar_desbloqueio($id_h){
+					$pdo = conectar();
+					try {
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 4 WHERE id_habilitado = :id_h");
+							$query->bindValue(":id_h",$id_h);
+							$query->execute();
+							return true;
+					} catch (PDOException $e) {
+							echo "falha ao solicitar_desbloqueio!".$e->getMessage();
+							return false;
+					}
+
+				}
+				function desativar($id_h){
+					$pdo = conectar();
+					try {
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 5 WHERE id_habilitado = :id_h");
+							$query->bindValue(":id_h",$id_h);
+							$query->execute();
+							return true;
+					} catch (PDOException $e) {
+							echo "falha ao desativar perfil!".$e->getMessage();
+							return false;
+					}
+
+				}
+				function ativar($id_h){
+					$pdo = conectar();
+					try {
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 1 WHERE id_habilitado = :id_h");
+							$query->bindValue(":id_h",$id_h);
+							$query->execute();
+							return true;
+					} catch (PDOException $e) {
+							echo "falha ao ativar perfil!".$e->getMessage();
+							return false;
+					}
+
 				}
 
  ?>

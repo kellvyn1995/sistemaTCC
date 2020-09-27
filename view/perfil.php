@@ -377,9 +377,41 @@ if (isset($_POST['var'])) {
   </form>
   <?php endif; ?>
   <?php }?>
+  <?php if (isset($_SESSION['idUser']) && !empty($_SESSION['idUser'])): ?>
+    <div class="col-12">
+      <button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Denúncia esse Perfil</button>
+    </div>
+  <?php endif; ?>
 </div>
 <!--comentar-->
 
+<!-- modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Justifique porque está denunciando esse perfil</h5>
+          <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" data-spy="scroll" data-target="#navbar-exemplo">
+          <form class="" action="../controller/c_denuncia.php" method="post">
+            <input type="hidden" name="id_u_denuncia" value="<?php echo $id_ud = $_SESSION['idUser'];?>" /> <!-- input invisivel-->
+            <input type="hidden" name="id_h_denuncia" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Explique detalhadamente sua denúncia </label>
+              <textarea name="mensagem_denuncia"class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="fazer_denuncia" class="btn btn-success">Realiza denúncia </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 <?php include "rodape.php"; ?>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

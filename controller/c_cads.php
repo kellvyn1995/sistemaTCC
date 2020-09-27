@@ -50,7 +50,8 @@ switch (get_post_action('anterio','proximo','btbusca')) {
   $dados_imagens = buscar_imagens($id_h);
   ?>
   <!--ser status for = 1 sera mostrado-->
-<?php if ($ver == 1):?>
+<?php if ($ver==1 || $ver==2):?>
+
   <tr>
   <!--mostrando resultados da consulta-->
   <form class="col-auto col-sm-4 mb-4 " action="view/perfil.php?<?php $lista["nome_apresentacao"]?>" method="GET">

@@ -1,5 +1,6 @@
 <?php
 include_once "../controller/c_admin.php";
+include_once "../controller/c_denuncia.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,70 +24,83 @@ include_once "../controller/c_admin.php";
       </tr>
     </thead>
     <tbody>
+     <?php
+      while ($denuncias = $buscar_denuncias->fetch(PDO::FETCH_ASSOC)) {
+
+      ?>
       <tr>
-        <td>Kellvyn</td>
-        <td>modelo carlos</td>
+        <td><?php echo $denuncias["nome"];?></td>
+        <td><?php echo $denuncias["nome_apresentacao"];?></td>
         <td>Bloqueado pelo sistema</td>
         <td>
-          <div class="dropdown">
-              <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bloqueado
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Analisa perfil</a>
-                <a class="dropdown-item" href="#">Analisa denúncias</a>
-                <a class="dropdown-item" href="#">Desbloquea</a>
+          <?php if ($denuncias["status"] == 2): ?>
+            <form class="" action="../controller/c_denuncia.php" method="post">
+              <input type="hidden" name="id_h" value="<?php echo $denuncias["id_habilitado"];?>">
+              <div class="dropdown">
+                  <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Denúnciado
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" type="submit" name="buscar_habilitados_x">Analisa denúncias</button>
+                    <button class="dropdown-item" type="submit" name="bloquea">Bloquear</button>
+                  </div>
+                </div>
+            </form>
+
+          <?php endif; ?>
+          <?php if ($denuncias["status"] == 3): ?>
+            <form class="" action="../controller/c_denuncia.php" method="post">
+              <input type="hidden" name="id_h" value="<?php echo $denuncias["id_habilitado"];?>">
+              <div class="dropdown">
+                  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Bloqueado
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" type="submit" name="buscar_habilitados_x">Analisa denúncias</button>
+                    <button class="dropdown-item" type="submit" name="desbloquea">Desbloquear</button>
+                  </div>
+                </div>
+            </form>
+
+          <?php endif; ?>
+          <?php if ($denuncias["status"] == 4): ?>
+                  <form class="" action="../controller/c_denuncia.php" method="post">
+                    <input type="hidden" name="id_h" value="<?php echo $denuncias["id_habilitado"];?>">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Solicitação de desbloqueio
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <button class="dropdown-item" type="submit" name="buscar_habilitados_x">Analisa denúncias</button>
+                          <button class="dropdown-item" type="submit" name="desbloquea">Desbloquear</button>
+                        </div>
+                      </div>
+                  </form>
+          <?php endif; ?>
+          <?php if ($denuncias["status"] == 6): ?>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Bloqueado
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Analisa perfil</a>
+                  <button class="dropdown-item" type="submit" name="buscar_habilitados_x">Analisa denúncias</button>
+                  <a class="dropdown-item" href="#">Analisa solicitação</a>
+                  <a class="dropdown-item" href="#">Desbloquea</a>
+                </div>
               </div>
-            </div>
+          <?php endif; ?>
         </td>
 
       </tr>
-      <tr>
-        <td>Kellvyn</td>
-        <td>modelo carlos</td>
-        <td>Habilitado solicita análise </td>
-        <td>
-          <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bloqueado
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Analisa perfil</a>
-                <a class="dropdown-item" href="#">Analisa denúncias</a>
-                <a class="dropdown-item" href="#">Analisa solicitação</a>
-                <a class="dropdown-item" href="#">Desbloquea</a>
-              </div>
-            </div>
-        </td>
+      <?php } ?>
 
-      </tr>
-      <tr>
 
-        <td>Kellvyn</td>
-        <td>modelo carlos</td>
-        <td>Bloqueado pelo administrador</td>
-        <td>
-          <div class="dropdown">
-              <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Bloqueado
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Analisa perfil</a>
-                <a class="dropdown-item" href="#">Analisa denúncias</a>
-                <a class="dropdown-item" href="#">Desbloquea</a>
-              </div>
-            </div>
-        </td>
-      </tr>
     </tbody>
   </table>
 </div>
 
 <!-- modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
-  ...more buttons...
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -97,27 +111,9 @@ include_once "../controller/c_admin.php";
           <span>&times;</span>
           </button>
         </div>
-        <div class="modal-body" data-spy="scroll" data-target="#navbar-exemplo">
-          <div id="navbar-exemplo">
-            <ul class="nav nav-tabs" role="tablist">
-              <div id="list-example" class="list-group col-3">
-                <a class="list-group-item list-group-item-action" href="#list-item-1">Usuário 1</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-2">Usuário 2</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-3">Usuário 3</a>
-                <a class="list-group-item list-group-item-action" href="#list-item-4">Usuário 4</a>
-              </div>
-              <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example col">
-                <h4 id="list-item-1">Item 1</h4>
-                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
-                <h4 id="list-item-2">Item 2</h4>
-                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
-                <h4 id="list-item-3">Item 3</h4>
-                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
-                <h4 id="list-item-4">Item 4</h4>
-                <p>Uma personagem fictícia ou ficcional refere-se a qualquer personagem que apareça num trabalho ou projeto de ficção. Mais definidamente, uma personagem fictícia é a pessoa ou "entidade consciente" que imaginamos existir em um mundo ou tipo de projeto. Em soma para as pessoas, personagens podem ser alienígenas, animais, deuses ou casualmente seres inanimados. </p>
-              </div>
-            </ul>
-          </div>
+        <div class="modal-body">
+
+        </div>
 
         </div>
         <div class="modal-footer">

@@ -22,6 +22,29 @@ include "../controller/c_perfil.php";
 <?php include_once "../view/menu.php"; ?>
 
 <div  class="container centered row p-3 my-3">
+  <div class="col-12">
+    <?php if ($buscar["status"] == 2): ?>
+        <div class="alert alert-warning" role="alert">
+        Seu perfil foi denúnciado!
+      </div>
+    <?php endif; ?>
+    <?php if ($buscar["status"] == 3): ?>
+        <div class="alert alert-danger" role="alert">
+        Seu perfil está bloqueado!
+      </div>
+    <?php endif; ?>
+    <?php if ($buscar["status"] == 4): ?>
+        <div class="alert alert-warning" role="alert">
+        Seu perfil está em analise!
+      </div>
+    <?php endif; ?>
+    <?php if ($buscar["status"] == 5): ?>
+        <div class="alert alert-warning" role="alert">
+        Seu perfil foi desativado!
+      </div>
+    <?php endif; ?>
+  </div>
+
 
     <!--slide de fotos-->
 
@@ -70,7 +93,18 @@ include "../controller/c_perfil.php";
 </ul>
 <div class="card-body">
 <a type="button" class="btn btn-warning" href="/view/agenda.php">Editar Agenda</a>
-<!-- <a type="button" class="btn btn-dark" href="/view/menssagem.php">Menssagem</a> -->
+<?php if ($buscar["status"] != 5): ?>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Desativar meu perfil</button>
+<?php endif; ?>
+<?php if ($buscar["status"] == 5): ?>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3" data-whatever="@mdo">Ativar meu perfil</button>
+<?php endif; ?>
+
+<?php if ($buscar["status"] == 3): ?>
+  <div class="card-footer bg-transparent border-success"></div>
+  <button type="button" class="btn btn-success col-12" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo">Solicitar Desbloqueio</button>
+<?php endif; ?>
+
 </div>
 </div>
 
@@ -143,14 +177,90 @@ include "../controller/c_perfil.php";
 </div>
 <!--fim video-->
 
+<!-- modal 1 -->
+<form class="" action="../controller/c_denuncia.php" method="post">
+  <input type="hidden" name="id_h" value="<?php echo $buscar["id_habilitado"];?>">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Desativar meu Perfil</h5>
+          <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            Realmente deseja desativar seu perfil?
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="desativar" class="btn btn-dark">Sim</button>
+        </div>
+        </div>
+
+      </div>
+    </div>
+</form>
+
+
+<!-- modal 2 -->
+<form class="" action="../controller/c_denuncia.php" method="post">
+  <input type="hidden" name="id_h" value="<?php echo $buscar["id_habilitado"];?>">
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Solicitar Desbloqueio</h5>
+          <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Seu perfil será analisado pelo o administrador do sistema
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="solicitar_desblqueio"class="btn btn-dark">Solicitar</button>
+        </div>
+        </div>
+      </div>
+    </div>
+</form>
+
+<!-- modal 3 -->
+<form class="" action="../controller/c_denuncia.php" method="post">
+  <input type="hidden" name="id_h" value="<?php echo $buscar["id_habilitado"];?>">
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Solicitar Ativação do meu perfil</h5>
+          <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Deseja realmente ativa seu perfil?
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="ativar"class="btn btn-dark">Sim</button>
+        </div>
+        </div>
+      </div>
+    </div>
+</form>
+  <script type="text/javascript">
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+  </script>
+
 
 <?php include "rodape.php"; ?>
-
-
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
