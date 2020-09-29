@@ -87,7 +87,7 @@ include_once "../controller/c_verifica_h.php";
 <div class="container p-3 my-3 bg-dark text-white">
     <form class="" action="../controller/c_update_habilitado.php" method="post">
       <input type="hidden" name="id_links" class="form-control"  maxlength="" value=" <?php echo $dados_links['id_links'];?>" >
-      <h5>LINK dos seus videos</h5>
+      <h5>LINK dos seus vídeos</h5>
       <div class="container row centered row  ">
 
         <?php if (!empty($dados_links['link1'])): ?>
@@ -121,11 +121,11 @@ include_once "../controller/c_verifica_h.php";
         <?php endif; ?>
       </div>
       <?php if (empty($dados_links['id_links'])): ?>
-        <button type="submit" name="add_links" class="btn btn-success">Add videos</button>
+        <button type="submit" name="add_links" class="btn btn-success">Adicionar vídeos</button>
       <?php endif; ?>
       <?php if (!empty($dados_links['id_links'])): ?>
         <div class="" style="margin: 5px 5px 0px 0px;">
-          <button type="submit" name="delete_link" class="btn btn-danger">Deleta videos</button>
+          <button type="submit" name="delete_link" class="btn btn-danger">Deleta vídeos</button>
         </div>
       <?php endif; ?>
 
@@ -245,7 +245,7 @@ include_once "../controller/c_verifica_h.php";
       <button type="submit" name="atualiza_redes" class="btn btn-success">Atualiza</button>
     <?php endif; ?>
     <?php if (empty($dados_redes['id_hab'])): ?>
-      <button type="submit" name="add_redes" class="btn btn-success">Salva</button>
+      <button type="submit" name="add_redes" class="btn btn-success">Salvar</button>
     <?php endif; ?>
 
   </form>

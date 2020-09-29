@@ -35,7 +35,7 @@ echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
   <div class="row">
     <div class="col-sm">
       <?php if (empty($_GET['safadeza'])): ?>
-        <img width="500px" height="400px" src="../media/WesleySafadao.png" alt="">
+        <img width="380px" height="400px" src="../media/WesleySafadao.png" alt="">
       <?php endif; ?>
       <?php if (isset($_GET['safadeza']) && !empty($_GET['safadeza'])): ?>
         <img  width="300px" height="400px" src="../media/o-cantor-wesley-safadao-1565312444497_v2_450x600.jpg" alt="">
@@ -56,8 +56,8 @@ echo $data->format("d/m/Y \à\s H:i:s"); // converte data e hora*/
         </form>
       <?php endif; ?>
       <?php if (isset($_GET['safadeza']) && !empty($_GET['safadeza'])): ?>
-          <h4>Você possui <?php echo "".$safadeza; ?>% de Safadeza</h4>
-          <h4>Só resta <?php echo "".$anjo; ?>% de Anjo</h4>
+          <h4>Você possui <?php echo "".$safadeza; ?>% de vagabundo</h4>
+          <h4>Só resta <?php echo "".$anjo; ?>% de Anjo.</h4>
           <form class="" action="../controller/c_safadao.php" method="post">
             <button type="submit" name="recalcular" class="btn btn-success">Calcula novamenter</button>
           </form>

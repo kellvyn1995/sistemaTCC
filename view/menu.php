@@ -9,7 +9,13 @@
                 <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Ajuda</a>
+                <a class="nav-link" href="../view/ajuda.php">Ajuda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../view/sobre.php">Sobre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdDCmbK_Vg8U0vZhZxY0xIHezCMteM8bNUs9hjvzD1JsWq3Xg/viewform?usp=sf_link">Formulário de avaliação </a>
             </li>
 
             <!--se tive uma sessão mostra nome do usuario-->
@@ -41,7 +47,7 @@
 
             <div class="btn-group">
               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Opções de usuario
+                Opções de usuário
               </button>
               <div class="dropdown-menu">
                 <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
@@ -60,6 +66,7 @@
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> um habiltado</a>
                 <?php endif; ?>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
+                <a class="dropdown-item" href="../view/safadao.php">Código do anjo</a>
                 <?php if (isset($_SESSION['id_admin']) && !empty($_SESSION['id_admin'])): ?>
                   <form class="" action="../view/admin.php" method="post">
                     <button type="submit" class="btn btn-light dropdown-item" name="todos">Admin</button>

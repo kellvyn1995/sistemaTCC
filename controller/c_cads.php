@@ -59,8 +59,9 @@ switch (get_post_action('anterio','proximo','btbusca')) {
     <input type="hidden" name="id_h" value="<?php echo $id_h;?>" /> <!-- input invisivel-->
     <input type="hidden" name="ajuste" value="1" /> <!-- input invisivel-->
     <div class="form-group col-sm">
+      <!-- <div class="card " style="max-width: 18rem;" style="max-width: 540px; max-height: 50px;"> -->
       <div class="card " style="max-width: 18rem;">
-        <img class="card-img-top" src="<?php echo $dados_imagens['img_perfil']?>" alt="Imagem de capa do card">
+        <img class="card-img-top" src="<?php echo $dados_imagens['img_perfil']?>" alt="Imagem de capa do card" style="max-width: 540px; max-height: 300px;">
         <div class="card-body">
           <h5 class="card-title text-dark"><?php echo $lista["nome_apresentacao"];?></h5>
           <p class="card-text text-dark"><?php echo $lista["apresentacao"];?></p>

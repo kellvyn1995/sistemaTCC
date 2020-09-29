@@ -19,7 +19,7 @@ include_once "../controller/c_denuncia.php";
       <tr>
         <th scope="col">Usuário</th>
         <th scope="col">Habilitado</th>
-        <th scope="col">Justificativa</th>
+        <!-- <th scope="col">E-mail do habilitado</th> -->
         <th scope="col">Opções</th>
       </tr>
     </thead>
@@ -31,7 +31,7 @@ include_once "../controller/c_denuncia.php";
       <tr>
         <td><?php echo $denuncias["nome"];?></td>
         <td><?php echo $denuncias["nome_apresentacao"];?></td>
-        <td>Bloqueado pelo sistema</td>
+        <!-- <td><?php echo $denuncias["email"];?></td> -->
         <td>
           <?php if ($denuncias["status"] == 2): ?>
             <form class="" action="../controller/c_denuncia.php" method="post">

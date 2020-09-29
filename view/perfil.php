@@ -337,7 +337,7 @@ if (isset($_POST['var'])) {
       <div class="container">
         <div class="row">
           <div class="col">
-            <textarea class="form-control" name="comentario" placeholder="Digite seu comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" name="comentario" placeholder="Digite seu comentário" id="exampleFormControlTextarea1" rows="3"></textarea>
             <label class="sr-only" for="inlineFormInputGroupUsername2">nome de usuario</label>
           </div>
 
@@ -345,7 +345,7 @@ if (isset($_POST['var'])) {
       </div>
 
     </div>
-    <div class="col-2">
+    <div class="col">
       <!--nota-->
       <div class="col">
         <div class="input-group ">
@@ -367,7 +367,7 @@ if (isset($_POST['var'])) {
           <input type="radio" id="cm_star-4" name="fb" value="4"/>
           <label for="cm_star-5"><i class="fa"></i></label>
           <input type="radio" id="cm_star-5" name="fb" value="5"/>
-          <button type="submit" name="addcomentario"class="btn btn-primary mb-2" >Envia</button>
+          <button type="submit" name="addcomentario"class="btn btn-primary mb-2" >Enviar</button>
         </div>
         </div>
       </div>

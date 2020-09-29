@@ -23,7 +23,7 @@ if(isset($_SESSION['idUser']) == false){
   <div class="container">
     <form method="POST" action="../controller/c_update_cadastro.php">
       <img class="rounded mx-auto d-block" src="../libs/img/logo01menor.png">
-      <h3 class="text-center text-white pt-3">Atualize seu dados</h3>
+      <h3 class="text-center text-white pt-3">Atualize seus dados</h3>
       <!--linha 1-->
       <div class="row">
         <div class="form-group col-xs-12 col-sm-6 col-md-6">
@@ -57,7 +57,7 @@ if(isset($_SESSION['idUser']) == false){
           <input type="text" data-mask="000.000.000-00" name="cpf" class="form-control" placeholder="CPF" maxlength="12" value="<?php echo $listaLogged['cpf']?>">
           </div>
           <div class="form-group w-100"></div>
-          <button type="submit" value="cadastrar" class="btn btn-success">Salva</button>
+          <button type="submit" value="cadastrar" class="btn btn-success">Salvar</button>
       </div>
 
     </form>

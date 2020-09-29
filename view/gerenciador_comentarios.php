@@ -24,9 +24,9 @@ include_once "../controller/c_gerenciador_comentarios.php";
   <thead>
     <tr>
       <th scope="col">Usuario</th>
-      <th scope="col">Comentario</th>
+      <th scope="col">Comentário</th>
       <th scope="col">Nota</th>
-      <th scope="col">ações</th>
+      <!-- <th scope="col">ações</th> -->
     </tr>
   </thead>
   <tbody>
