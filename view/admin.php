@@ -76,6 +76,18 @@ while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
             <?php if ($lista["status"] == 0): ?>
                 <button class="btn btn-danger btn-lg disabled" name="status" tabindex="-1" role="button" aria-disabled="true">DESABILITADO</button>
             <?php endif; ?>
+            <?php if ($lista["status"] == 2): ?>
+              <button type="button" class="btn btn-lg btn-primary" disabled>Perfil denúnciado</button>
+            <?php endif; ?>
+            <?php if ($lista["status"] == 3): ?>
+              <button type="button" class="btn btn-lg btn-primary" disabled>Bloqueado</button>
+            <?php endif; ?>
+            <?php if ($lista["status"] == 4): ?>
+              <button type="button" class="btn btn-lg btn-primary" disabled>Solicitão</button>
+            <?php endif; ?>
+            <?php if ($lista["status"] == 5): ?>
+              <button type="button" class="btn btn-lg btn-primary" disabled>Desativado</button>
+            <?php endif; ?>
 
       </td>
     <td>
@@ -85,6 +97,18 @@ while ($lista = $consulta->fetch(PDO::FETCH_ASSOC)) {
           <a type="button" name="verificar" target="_blank" class="btn btn-success" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
       <?php endif; ?>
       <?php if ($lista["status"] == 0): ?>
+          <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
+      <?php endif; ?>
+      <?php if ($lista["status"] == 2): ?>
+          <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
+      <?php endif; ?>
+      <?php if ($lista["status"] == 3): ?>
+          <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
+      <?php endif; ?>
+      <?php if ($lista["status"] == 4): ?>
+          <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
+      <?php endif; ?>
+      <?php if ($lista["status"] == 5): ?>
           <a type="button" name="verificar" target="_blank" class="btn btn-danger" href="../view/perfil.php?id_h=<?php echo $id_h?>&id_m=<?php echo $id_m?>">Verificar</a>
       <?php endif; ?>
 

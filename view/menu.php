@@ -14,9 +14,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="../view/sobre.php">Sobre</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdDCmbK_Vg8U0vZhZxY0xIHezCMteM8bNUs9hjvzD1JsWq3Xg/viewform?usp=sf_link">Formulário de avaliação </a>
-            </li>
+            <?php if (isset($_SESSION['idUser']) && !empty($_SESSION['idUser']) && !isset($_SESSION['id_habilitado']) && empty($_SESSION['id_habilitado'])): ?>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSfMT5iUyjUtPBYlShgT7YenGvR5ggGgoAFFXkoQVHf360e6xQ/viewform?usp=sf_link">Formulário de avaliação </a>
+              </li>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['id_habilitado']) && !empty($_SESSION['id_habilitado'])): ?>
+              <li class="nav-item">
+                  <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSd8Q2CAMGVELYZJg5q9SKVc3UTRDTybVAKf7LIITdG26_9ZlQ/viewform?usp=sf_link">Formulário de avaliação </a>
+              </li>
+            <?php endif; ?>
+
 
             <!--se tive uma sessão mostra nome do usuario-->
 
@@ -66,12 +74,12 @@
                   <a class="dropdown-item" href="../view/cadastrohabilitado.php?pg=cadastrohabilitado">Quero ser <br> um habiltado</a>
                 <?php endif; ?>
                 <a class="dropdown-item" href="../view/atualizar_cadastro.php">Atualizar <br> cadastrar</a>
-                <a class="dropdown-item" href="../view/safadao.php">Código do anjo</a>
+                <!-- <a class="dropdown-item" href="../view/safadao.php">Código do anjo</a> -->
                 <?php if (isset($_SESSION['id_admin']) && !empty($_SESSION['id_admin'])): ?>
                   <form class="" action="../view/admin.php" method="post">
                     <button type="submit" class="btn btn-light dropdown-item" name="todos">Admin</button>
                   </form>
-                  <a class="dropdown-item" href="../view/safadao.php">Código do anjo</a>
+
                   <a class="dropdown-item" href="../view/denuncia.php">Denúncias</a>
                   <!-- <button type="button" class="btn btn-light" name="todos"><a class="dropdown-item" href="../view/admin.php">Admin</a></button> -->
                 <?php endif; ?>

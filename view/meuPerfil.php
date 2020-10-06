@@ -2,6 +2,7 @@
 include_once "../controller/c_meuPerfil.php";
 $id_habilitado = $_SESSION['id_habilitado'];
 include "../controller/c_perfil.php";
+include "../controller/c_denuncia.php";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,6 +24,11 @@ include "../controller/c_perfil.php";
 
 <div  class="container centered row p-3 my-3">
   <div class="col-12">
+    <?php if ($buscar["status"] == 0): ?>
+        <div class="alert alert-warning" role="alert">
+        Seu perfil está em analiser!
+      </div>
+    <?php endif; ?>
     <?php if ($buscar["status"] == 2): ?>
         <div class="alert alert-warning" role="alert">
         Seu perfil foi denúnciado!

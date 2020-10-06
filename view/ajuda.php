@@ -16,19 +16,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<?php include "menu.php"; ?>
+<?php include "../view/menu.php"; ?>
 <div  class="container centered row p-3 my-3">
 
   <div class="card mb-3" >
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="../media/home.png" class="card-img" style="max-width: 540px; max-height: 350px;">
+      <img src="../media/01.png" class="card-img" style="max-width: 540px; max-height: 350px;">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Na tela home</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title">Tela inicial</h5>
+        <p class="card-text">Na tela inicial são apresentados os últimos profissionais cadastrados na plataforma, caso o usuário queria saber mais informações sobre um determinado profissional, basta clicar no botão visitar, o usuário será redirecionado para o perfil do profissional selecionado.</p>
+
       </div>
     </div>
   </div>
@@ -37,13 +37,13 @@
   <div class="card mb-3" >
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="../media/home.png" class="card-img" style="max-width: 540px; max-height: 350px;">
+      <img src="../media/01.png" class="card-img" style="max-width: 540px; max-height: 350px;">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Na tela home</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title">Como buscar um profissional?</h5>
+        <p class="card-text">no campo de busca o usuário pode utilizar como parâmetro de busca o nome de um profissional, pelo tipo de trabalho que que deseja ou utilizando hashtags.</p>
+
       </div>
     </div>
   </div>
@@ -52,18 +52,44 @@
   <div class="card mb-3" >
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="../media/home.png" class="card-img" style="max-width: 540px; max-height: 350px;">
+      <img src="../media/01.png" class="card-img" style="max-width: 540px; max-height: 350px;">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Na tela home</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <h5 class="card-title">Como se cadastrar na plataforma?</h5>
+        <p class="card-text">No barra superior basta clicar no botão entrar, o usuário será redirecionado para tela de login caso o usuário não seja cadastrado basta clicar no link não sou cadastrado, preencha todos os campos solicitados, aceitar os termos de uso e clicar em enviar, depois só realizar o login.</p>
       </div>
     </div>
   </div>
   </div>
 
+  <div class="card mb-3" >
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../media/perfil 3.png" class="card-img" style="max-width: 540px; max-height: 350px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Como avaliar o trabalho de um profissional?</h5>
+        <p class="card-text">Para realizar uma avaliação ou comentário o usuário devera esta logado na plataforma.</p>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="card mb-3" >
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../media/04.png" class="card-img" style="max-width: 540px; max-height: 350px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Como oferecer serviço na plataforma?</h5>
+        <p class="card-text">Para oferecer seu serviço na plataforma o profissional deverá primeiro fazer o cadastro de usuário, após efetuar o login basta ir em opções de usuário, clicar na opção “quero ser um habilitado”.</p>
+      </div>
+    </div>
+  </div>
+  </div>
 </div>
 
 

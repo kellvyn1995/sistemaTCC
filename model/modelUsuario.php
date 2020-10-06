@@ -1017,7 +1017,7 @@ function cadastrar($dados_usuario){
 				function ativar($id_h){
 					$pdo = conectar();
 					try {
-						  $query = $pdo->prepare("UPDATE habilitados SET status = 1 WHERE id_habilitado = :id_h");
+						  $query = $pdo->prepare("UPDATE habilitados SET status = 0 WHERE id_habilitado = :id_h");
 							$query->bindValue(":id_h",$id_h);
 							$query->execute();
 							return true;

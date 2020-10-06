@@ -13,6 +13,7 @@ include_once "c_consulta.php";
         $fazer_denuncia = registra_denuncia($mensagem_denuncia,$id_do_u,$id_do_h);
         if ($fazer_denuncia) {
           echo "denuncia gravada";
+          echo "<script>top.window.location='../index.php';</script>";
 
         }else {
           echo "erro ao fazer denuncia";
@@ -54,7 +55,7 @@ include_once "c_consulta.php";
           $id_h = addslashes($_POST['id_h']);
           $id_s_h = solicitar_desbloqueio($id_h);
           if ($id_s_h) {
-            echo "<script>top.window.location='../view/meuperfil.php';</script>";
+            echo "<script>top.window.location='../view/meuPerfil.php';</script>";
           }else {
             echo "falha na solicitação";
           }
@@ -63,7 +64,7 @@ include_once "c_consulta.php";
              $id_h = addslashes($_POST['id_h']);
              $id_s_h = desativar($id_h);
              if ($id_s_h) {
-               echo "<script>top.window.location='../view/meuperfil.php';</script>";
+               echo "<script>top.window.location='../view/meuPerfil.php';</script>";
              }else {
                echo "falha na solicitação";
              }
@@ -72,7 +73,7 @@ include_once "c_consulta.php";
                 $id_h = addslashes($_POST['id_h']);
                 $id_s_h = ativar($id_h);
                 if ($id_s_h) {
-                  echo "<script>top.window.location='../view/meuperfil.php';</script>";
+                  echo "<script>top.window.location='../view/meuPerfil.php';</script>";
                 }else {
                   echo "falha na solicitação";
                 }
